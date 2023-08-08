@@ -28,6 +28,8 @@
 
     <!-- Main content -->
     <div class="container">
+        <app-shopping-cart *ngIf="isCartOpen"></app-shopping-cart>
+
         <h2>Featured Products</h2>
         <div class="featured-products">
             <div class="product">
@@ -52,7 +54,6 @@
     </div>
 
     <!-- Shopping Cart -->
-    <app-shopping-cart *ngIf="isCartOpen"></app-shopping-cart>
 
     <!-- Footer -->
     <footer>
