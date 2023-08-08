@@ -20,6 +20,9 @@
             <li><a [routerLink]="['/products']">Products</a></li>
             <li><a [routerLink]="['/about']">About</a></li>
             <li><a href="#">Contact</a></li>
+            <a href="#" class="shopping-cart-link" (click)="toggleCart(); $event.preventDefault()">
+                <i class="fa fa-shopping-cart"></i>
+            </a>
         </ul>
     </nav>
 
@@ -47,6 +50,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Shopping Cart -->
+    <app-shopping-cart *ngIf="isCartOpen"></app-shopping-cart>
 
     <!-- Footer -->
     <footer>
