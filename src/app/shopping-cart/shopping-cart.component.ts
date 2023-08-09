@@ -17,17 +17,11 @@ export class ShoppingCartComponent implements OnInit {
   
   ngOnInit(): void {
     this.items$ = this.itemservice.getAll();
-
-    this.items$.subscribe((items) => {
-      console.log(items);
-    });
-    
   }
 
   // delete items from the items$ observable
   removeItemFromCart(item: Item) {
       this.itemservice.del(item.id);
-      // this.shoppingCartItems = this.shoppingCartItems.filter((i) => i.id !== item.id);
     }
 
 }
