@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../models/item';
+import { Item } from '../../libs/entities/src/lib/item/item';
+import { Observable } from 'rxjs';
+import { ItemService } from 'src/libs/api/src/lib/item/item.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -7,19 +9,25 @@ import { Item } from '../models/item';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  dummyItem: Item = new Item('1', 'Dummy Item', 100, 1, false, '../../assets/images/shoe.png');
+  items$: Observable<Item[]> = new Observable<Item[]>();
 
   // eventually the items need to be fetched from the server
-  shoppingCartItems: Item[] = [];
-  
+
+  constructor(private itemservice: ItemService) { }
   
   ngOnInit(): void {
-    this.shoppingCartItems.push(this.dummyItem);
+    this.items$ = this.itemservice.getAll();
+
+    this.items$.subscribe((items) => {
+      console.log(items);
+    });
     
   }
 
+  // delete items from the items$ observable
   removeItemFromCart(item: Item) {
-      this.shoppingCartItems = this.shoppingCartItems.filter((i) => i.id !== item.id);
+      this.itemservice.del(item.id);
+      // this.shoppingCartItems = this.shoppingCartItems.filter((i) => i.id !== item.id);
     }
 
 }
