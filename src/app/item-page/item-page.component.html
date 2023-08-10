@@ -1,1 +1,50 @@
-<p>item-page works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Generic Webshop</title>
+
+</head>
+
+<body>
+    <!-- Same header and navigation as previous -->
+
+    <!-- Main content -->
+    <div class="container" *ngIf="(item$ | async) as item">
+        <div class="product-details">
+            <div class="product-image">
+                <img src={{item.imageSrc}} alt="Product 1">
+            </div>
+            <div class="product-info">
+                <h2>{{item.title}}</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum lorem sed elit
+                    luctus, eu mollis magna iaculis.</p>
+                <p>Price: ${{item.price}}</p>
+                <p>In Stock: 20</p>
+                <button>Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product-warranty">
+            <h3>Warranty Information</h3>
+            <p>This product comes with a 1-year limited warranty. Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Quisque suscipit lobortis ex nec rhoncus.</p>
+        </div>
+
+        <div class="product-description">
+            <h3>Product Description</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur enim nec facilisis gravida.
+                Nullam gravida nunc quis risus iaculis, vel efficitur eros rutrum. Ut dapibus libero vel dolor
+                facilisis, ut venenatis velit accumsan.</p>
+            <p>Curabitur aliquam orci eu justo convallis, vel dictum odio varius. Nulla facilisi. Fusce eu erat a
+                enim volutpat dictum eget eu nisi. Vivamus fermentum lectus eu accumsan vestibulum.</p>
+        </div>
+    </div>
+
+    <!-- Same footer as previous -->
+</body>
+
+</html>
+

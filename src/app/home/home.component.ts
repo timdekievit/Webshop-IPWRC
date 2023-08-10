@@ -11,17 +11,10 @@ import { Item } from 'src/libs/entities/src/lib/item/item';
 export class HomeComponent implements OnInit {
   items$: Observable<Item[]> = new Observable<Item[]>();
 
-  isCartOpen = false;
-
   constructor(private itemService: ItemService) { }
   ngOnInit(): void {
     this.items$ = this.itemService.getAll();
     this.items$.subscribe((items) => console.log(items));
-  }
-
-  toggleCart() {
-    this.isCartOpen = !this.isCartOpen;
-    console.log(this.isCartOpen);
   }
 
   addToCart(item: Item) {

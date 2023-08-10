@@ -13,23 +13,8 @@
         <h1>Generic Webshop</h1>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a [routerLink]="['/home']">Home</a></li>
-            <li><a [routerLink]="['/products']">Products</a></li>
-            <li><a [routerLink]="['/about']">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <a href="#" class="shopping-cart-link" (click)="toggleCart(); $event.preventDefault()">
-                <i class="fa fa-shopping-cart"></i>
-            </a>
-        </ul>
-    </nav>
-
     <!-- Main content -->
     <div class="container">
-        <app-shopping-cart *ngIf="isCartOpen"></app-shopping-cart>
-
         <h2>Featured Products</h2>
         <div class="featured-products">
             <div class="product" *ngFor="let item of (items$ | async)">
