@@ -21,6 +21,11 @@ export class ItemPageComponent implements OnInit {
     this.item$ = this.itemService.get(id);
   }
 
+  addToCart(item: Item) {
+    console.log('add to cart');
+    this.itemService.add(item);
+  }
+
 
 
 }
