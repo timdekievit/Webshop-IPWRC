@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ItemPageComponent } from './item-page/item-page.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     HomeComponent,
     AboutComponent,
     ProductsComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ItemPageComponent
   ],
   imports: [
     BrowserModule,
