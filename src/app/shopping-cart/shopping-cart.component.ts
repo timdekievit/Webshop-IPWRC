@@ -16,7 +16,7 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private itemservice: ItemService) { }
   
   ngOnInit(): void {
-    this.items$ = this.itemservice.getAll();
+    this.items$ = this.itemservice.getItemsInShoppingCart();
   }
 
   // delete items from the items$ observable

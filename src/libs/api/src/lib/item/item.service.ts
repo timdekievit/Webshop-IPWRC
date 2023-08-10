@@ -7,32 +7,39 @@ import { Item } from 'src/libs/entities/src/lib/item/item';
 @Injectable({
   providedIn: 'root',
 })
-export class ItemService { 
-    // create a list of items with 3 dummy items inside the list from the model item.ts
-    items: Item[] = [
-        new Item('1', 'shoe', 10, 1, false, '../../../../assets/images/shoe.jpg'),
-        new Item('2', 'balloon', 20, 1, false, '../../../../assets/images/balloon.png'),
-        new Item('3', 'pizza', 30, 1, false, '../../../../assets/images/pizza.jpg'),
-    ];
+export class ItemService {
+  // create a list of items with 3 dummy items inside the list from the model item.ts
+  items: Item[] = [
+    new Item('1', 'shoe', 10, 1, false, '../../../../assets/images/shoe.jpg'),
+    new Item('2', 'balloon', 20, 1, false, '../../../../assets/images/balloon.png'),
+    new Item('3', 'pizza', 30, 1, false, '../../../../assets/images/pizza.jpg'),
+  ];
 
-    private itemsSubject: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>(this.items);
+  private itemsSubject: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>(this.items);
+  private itemsInShoppingCartSubject: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
 
-    // later the code above will be replaced by the server call
+  // later the code above will be replaced by the server call
 
-//   constructor(private http: HttpClient) {}
+  //   constructor(private http: HttpClient) {}
 
-  constructor() {}
+  constructor() { }
 
-//   getAll = () => this.http.get<AssignmentPortal[]>('/api/assignments/');
+  //   getAll = () => this.http.get<AssignmentPortal[]>('/api/assignments/');
   getAll = () => this.itemsSubject.asObservable();
 
-  del = (id: string) => {
-  this.items = this.items.filter((i) => i.id !== id);
-  // update the observable
-  this.itemsSubject.next(this.items);
-} 
-    
-//   get = (id: string) => this.http.get<AssignmentPortal>('/api/assignments/' + id);
+  getItemsInShoppingCart = () => this.itemsInShoppingCartSubject.asObservable();
 
+  del = (id: string) => {
+    let items = this.itemsInShoppingCartSubject.getValue();
+    console.log(items);
+    items = items.filter((item) => item.id !== id);
+    this.itemsInShoppingCartSubject.next(items);
+  }
+
+  add = (item: Item) => {
+    let items = this.itemsInShoppingCartSubject.getValue();
+    items.push(item);
+    this.itemsInShoppingCartSubject.next(items);
+  }
 
 }

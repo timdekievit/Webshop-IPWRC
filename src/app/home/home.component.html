@@ -32,23 +32,11 @@
 
         <h2>Featured Products</h2>
         <div class="featured-products">
-            <div class="product">
-                <img src="../../assets/images/balloon.png" alt="Product 1">
-                <h3>Product 1</h3>
+            <div class="product" *ngFor="let item of (items$ | async)">
+                <img src={{item.imageSrc}} alt="Product 1">
+                <h3>{{item.title}}</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <button>Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="../../assets/images/pizza.jpg" alt="Product 2">
-                <h3>Product 2</h3>
-                <p>Phasellus vestibulum lorem sed elit luctus, eu mollis magna iaculis.</p>
-                <button>Add to Cart</button>
-            </div>
-            <div class="product">
-                <img src="../../assets/images/shoe.jpg" alt="Product 3">
-                <h3>Product 3</h3>
-                <p>Curabitur a neque id felis luctus euismod.</p>
-                <button>Add to Cart</button>
+                <button (click)="addToCart(item)">Add to Cart</button>
             </div>
         </div>
     </div>
@@ -62,4 +50,3 @@
 </body>
 
 </html>
-
