@@ -13,6 +13,11 @@ export class ItemService {
     new Item('1', 'shoe', 10, 1, false, '../../../../assets/images/shoe.jpg'),
     new Item('2', 'balloon', 20, 1, false, '../../../../assets/images/balloon.png'),
     new Item('3', 'pizza', 30, 1, false, '../../../../assets/images/pizza.jpg'),
+    new Item('4', 'hat', 15, 1, false, '../../../../assets/images/hat.jpg'),
+    new Item('5', 'book', 8, 1, false, '../../../../assets/images/book.jpg'),
+    new Item('6', 'teddy bear', 25, 1, false, '../../../../assets/images/teddy.jpg'),
+    new Item('7', 'sunglasses', 18, 1, false, '../../../../assets/images/sunglasses.jpg'),
+    new Item('8', 'guitar', 150, 1, false, '../../../../assets/images/guitar.jpg'),
   ];
 
   private itemsSubject: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>(this.items);

@@ -1,1 +1,38 @@
-<p>products works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Generic Webshop</title>
+    <style>
+       
+    </style>
+</head>
+
+<body>
+    <!-- Same header and navigation as previous -->
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="search-button">Search</button>
+        </div>
+
+        <h2>Product Listing</h2>
+        <div class="product-list">
+            <div class="product" *ngFor="let item of (items$ | async)">
+                <img src={{item.imageSrc}} alt="Product 1" [routerLink]="['/item', item.id]">
+                <h3>{{item.title}}</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <button (click)="addToCart(item)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Same footer as previous -->
+</body>
+
+</html>
+
