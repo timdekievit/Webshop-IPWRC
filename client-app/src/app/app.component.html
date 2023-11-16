@@ -8,8 +8,8 @@
             <li><a href="#" class="shopping-cart-link" (click)="toggleCart(); $event.preventDefault()">
                 <i class="fa fa-shopping-cart"></i>
             </a></li>
-            <li><a href="#" [routerLink]="['/login']" class="login-link">Login</a></li>
-            <li><a href="#" [routerLink]="['/register']" class="register-link">Register</a></li>
+            <li><a [routerLink]="['/login']" class="login-link">Login</a></li>
+            <li><a [routerLink]="['/register']" class="register-link">Register</a></li>
         </ul>
     </nav>
     <app-shopping-cart *ngIf="isCartOpen$ | async"></app-shopping-cart>
