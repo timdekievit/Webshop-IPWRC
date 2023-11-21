@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
-import { Item } from 'src/libs/entities/src/lib/item/item';
+import { Product } from 'src/libs/entities/src/lib/product/product';
 // import { HttpClient} from '@angular/common/http';
 // import {AssignmentPortal } from '@funle/entities';
 

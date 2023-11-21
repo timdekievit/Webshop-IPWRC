@@ -1,11 +1,11 @@
 <!-- shopping-cart.component.html -->
 <div class="cart-container">
     <h2>Your Shopping Cart</h2>
-    <div *ngIf="(items$ | async)!.length === 0" class="empty-cart">
+    <div *ngIf="(products$ | async)!.length === 0" class="empty-cart">
       Your cart is empty.
     </div>
-    <div *ngIf="(items$ | async)!.length > 0" class="cart-items">
-      <div *ngFor="let item of (items$ | async)" class="cart-item">
+    <div *ngIf="(products$ | async)!.length > 0" class="cart-items">
+      <div *ngFor="let item of (products$ | async)" class="cart-item">
         <div class="item-details">
           <img [src]="item.imageSrc" alt="Product Image">
           <div class="item-info">

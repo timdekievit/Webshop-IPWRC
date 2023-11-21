@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemService } from 'src/libs/api/src/lib/item/item.service';
-import { Item } from 'src/libs/entities/src/lib/item/item';
+import { ProductService } from 'src/libs/api/src/lib/product/product.service';
+import { Product } from 'src/libs/entities/src/lib/product/product';
 
 @Component({
   selector: 'app-home',
@@ -9,23 +9,23 @@ import { Item } from 'src/libs/entities/src/lib/item/item';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  items$: Observable<Item[]> = new Observable<Item[]>();
+  products$: Observable<Product[]> = new Observable<Product[]>();
 
-  randomItems: Item[] = [];
+  randomProducts: Product[] = [];
 
-  constructor(private itemService: ItemService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.items$ = this.itemService.getAll();
-    this.items$.subscribe((items) => console.log(items));
+    this.products$ = this.productService.getAll();
+    this.products$.subscribe((items) => console.log(items));
 
-    this.items$.subscribe(items => {
-      this.randomItems = this.getRandomItems(items, 3); // Get 3 random items
+    this.products$.subscribe(items => {
+      this.randomProducts = this.getRandomItems(items, 3); // Get 3 random items
     });
   }
 
-  getRandomItems(items: Item[], count: number): Item[] {
-    const shuffledItems = [...items]; // Copy the items array to avoid modifying the original array
+  getRandomItems(products: Product[], count: number): Product[] {
+    const shuffledItems = [...products]; // Copy the items array to avoid modifying the original array
     const randomItems = [];
 
     while (randomItems.length < count && shuffledItems.length > 0) {
@@ -37,9 +37,9 @@ export class HomeComponent implements OnInit {
     return randomItems;
   }
 
-  addToCart(item: Item) {
+  addToCart(product: Product) {
     console.log('add to cart');
-    this.itemService.add(item);
+    this.productService.add(product);
   }
 
 }

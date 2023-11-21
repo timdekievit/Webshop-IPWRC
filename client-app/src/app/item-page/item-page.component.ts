@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ItemService } from 'src/libs/api/src/lib/item/item.service';
-import { Item } from 'src/libs/entities/src/lib/item/item';
+import { ProductService } from 'src/libs/api/src/lib/product/product.service';
+import { Product } from 'src/libs/entities/src/lib/product/product';
 
 @Component({
   selector: 'app-item-page',
@@ -11,19 +11,19 @@ import { Item } from 'src/libs/entities/src/lib/item/item';
 })
 export class ItemPageComponent implements OnInit {
 
-  item$: Observable<Item> = new Observable<Item>();
+  product$: Observable<Product> = new Observable<Product>();
 
-  constructor(private itemService: ItemService, private route: Router) { }
+  constructor(private productService: ProductService, private route: Router) { }
   
 
   ngOnInit(): void {
     const id = this.route.url.split('/')[2];
-    this.item$ = this.itemService.get(id);
+    this.product$ = this.productService.get(id);
   }
 
-  addToCart(item: Item) {
+  addToCart(product: Product) {
     console.log('add to cart');
-    this.itemService.add(item);
+    this.productService.add(product);
   }
 
 

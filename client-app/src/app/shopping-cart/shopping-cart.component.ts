@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../../libs/entities/src/lib/item/item';
 import { Observable } from 'rxjs';
-import { ItemService } from 'src/libs/api/src/lib/item/item.service';
+import { ProductService } from 'src/libs/api/src/lib/product/product.service';
+import { Product } from 'src/libs/entities/src/lib/product/product';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,19 +9,19 @@ import { ItemService } from 'src/libs/api/src/lib/item/item.service';
   styleUrls: ['./shopping-cart.component.scss']
 })
 export class ShoppingCartComponent implements OnInit {
-  items$: Observable<Item[]> = new Observable<Item[]>();
+  products$: Observable<Product[]> = new Observable<Product[]>();
 
   // eventually the items need to be fetched from the server
 
-  constructor(private itemservice: ItemService) { }
+  constructor(private productService: ProductService) { }
   
   ngOnInit(): void {
-    this.items$ = this.itemservice.getItemsInShoppingCart();
+    this.products$ = this.productService.getProductsInShoppingCart();
   }
 
   // delete items from the items$ observable
-  removeItemFromCart(item: Item) {
-      this.itemservice.del(item.id);
+  removeItemFromCart(product: Product) {
+      this.productService.del(product.id);
     }
 
 }

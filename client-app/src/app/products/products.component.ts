@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ItemService } from 'src/libs/api/src/lib/item/item.service';
-import { Item } from 'src/libs/entities/src/lib/item/item';
+import { ProductService } from 'src/libs/api/src/lib/product/product.service';
+import { Product } from 'src/libs/entities/src/lib/product/product';
+
 
 @Component({
   selector: 'app-products',
@@ -9,17 +10,17 @@ import { Item } from 'src/libs/entities/src/lib/item/item';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  items$: Observable<Item[]> = new Observable<Item[]>();
+  products$: Observable<Product[]> = new Observable<Product[]>();
 
-  constructor(private itemService: ItemService) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.items$ = this.itemService.getAll();
+    this.products$ = this.productService.getAll();
   }
 
-  addToCart(item: Item) {
+  addToCart(product: Product) {
     console.log('add to cart');
-    this.itemService.add(item);
+    this.productService.add(product);
   }
 
 }

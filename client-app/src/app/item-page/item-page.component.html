@@ -12,18 +12,18 @@
     <!-- Same header and navigation as previous -->
 
     <!-- Main content -->
-    <div class="container" *ngIf="(item$ | async) as item">
+    <div class="container" *ngIf="(product$ | async) as product">
         <div class="product-details">
             <div class="product-image">
-                <img src={{item.imageSrc}} alt="Product 1">
+                <img src={{product.imageSrc}} alt="Product 1">
             </div>
             <div class="product-info">
-                <h2>{{item.title}}</h2>
+                <h2>{{product.title}}</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vestibulum lorem sed elit
                     luctus, eu mollis magna iaculis.</p>
-                <p>Price: ${{item.price}}</p>
+                <p>Price: ${{product.price}}</p>
                 <p>In Stock: 20</p>
-                <button (click)="addToCart(item)">Add to Cart</button>
+                <button (click)="addToCart(product)">Add to Cart</button>
             </div>
         </div>
 
