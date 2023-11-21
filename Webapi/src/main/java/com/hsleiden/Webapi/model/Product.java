@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 @Entity
 public class Product {
 
+    // TODO change Product Model so that it is the same as in the frontend
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
