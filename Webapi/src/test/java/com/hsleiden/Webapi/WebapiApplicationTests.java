@@ -1,10 +1,10 @@
-package com.hsleiden.RestApiwebshop;
+package com.hsleiden.Webapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestApiWebshopApplicationTests {
+class WebapiApplicationTests {
 
 	@Test
 	void contextLoads() {

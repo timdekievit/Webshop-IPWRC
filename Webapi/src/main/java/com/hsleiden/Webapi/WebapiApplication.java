@@ -1,13 +1,13 @@
-package com.hsleiden.RestApiwebshop;
+package com.hsleiden.Webapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestApiWebshopApplication {
+public class WebapiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestApiWebshopApplication.class, args);
+		SpringApplication.run(WebapiApplication.class, args);
 	}
 
 }
