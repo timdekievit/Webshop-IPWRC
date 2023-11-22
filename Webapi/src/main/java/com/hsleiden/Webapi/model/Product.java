@@ -5,38 +5,115 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.UUID;
+
 @Entity
 public class Product {
 
-    // TODO change Product Model so that it is the same as in the frontend
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+    private String productId;
+    private String title;
+    private String description;
     private double price;
+    private int quantity;
+    private boolean isSold;
+    private String imageSrc;
+    private int availability;
 
-
-    public Product() {}
-
-    public Product(String name, double price) {
-        this.name = name;
+    public Product() {
+        this.productId = generateUUID();
+    }
+    public Product(String title, String description,
+                   double price, int quantity, boolean isSold, String imageSrc, int availability) {
+        this.productId = generateUUID();
+        this.title = title;
+        this.description = description;
         this.price = price;
+        this.quantity = quantity;
+        this.isSold = isSold;
+        this.imageSrc = imageSrc;
+        this.availability = availability;
     }
 
-    // Getters and setters (omitted for brevity)
+    private String generateUUID() {
+        return UUID.randomUUID().toString();
+    }
 
-    public Long getId() {
+    // Getters and setters
+
+    public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public double getPrice() {
         return price;
     }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public boolean isSold() {
+        return isSold;
+    }
+
+    public void setSold(boolean isSold) {
+        this.isSold = isSold;
+    }
+
+    public String getImageSrc() {
+        return imageSrc;
+    }
+
+    public void setImageSrc(String imageSrc) {
+        this.imageSrc = imageSrc;
+    }
+
+    public int getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(int availability) {
+        this.availability = availability;
+    }
 }
+
 

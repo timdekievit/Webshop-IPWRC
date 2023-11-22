@@ -17,11 +17,11 @@
     <div class="container">
         <h2>Featured Products</h2>
         <div class="featured-products">
-            <div class="product" *ngFor="let item of randomProducts">
-                <img src={{item.imageSrc}} alt="Product 1" [routerLink]="['/item', item.id]">
-                <h3>{{item.title}}</h3>
+            <div class="product" *ngFor="let product of randomProducts">
+                <img src={{product.imageSrc}} alt="Product 1" [routerLink]="['/item', product.id]">
+                <h3>{{product.title}}</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <button (click)="addToCart(item)">Add to Cart</button>
+                <button (click)="addToCart(product)">Add to Cart</button>
             </div>
         </div>
     </div>
