@@ -7,6 +7,9 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
 @Injectable({
   providedIn: 'root',
 })
+
+ // TODO replace the dummy data with the server call and make sure i can receive a image file from the server.
+ // TODO connect the image public id to the product.
 export class ProductService {
   // create a list of items with 3 dummy items inside the list from the model item.ts
   products: Product[] = [
