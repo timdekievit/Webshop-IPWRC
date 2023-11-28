@@ -3,12 +3,10 @@ package com.hsleiden.Webapi.controller;
 import com.hsleiden.Webapi.model.Product;
 import com.hsleiden.Webapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/products")
@@ -25,6 +23,11 @@ public class ProductController {
     @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProductsWithImageUrl();
+    }
+
+    @GetMapping("/{id}")
+    public Product getProductWithImageUrl(@PathVariable String id) {
+        return productService.getProductWithImageUrl(id);
     }
 }
 

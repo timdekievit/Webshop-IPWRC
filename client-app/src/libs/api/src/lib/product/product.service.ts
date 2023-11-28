@@ -22,14 +22,7 @@ export class ProductService {
 
   // the get function below should not return undefined how to garantee that?
   // get = (id: string) => of(this.itemsSubject.getValue().find((item) => item.id === id));
-  get = (id: string) => {
-    // const product = this.productsSubject.getValue().find((product) => product.id === id);
-    // if (product === undefined) {
-    //   return of(new Product('', '', 0, 0, false, ''));
-    // }
-    // return of(product);
-  }
-
+  get = (id: string) => this.http.get<Product>(this.webserver + '/api/products/' + id);
 
   getProductsInShoppingCart = () => this.productsInShoppingCartSubject.asObservable();
 

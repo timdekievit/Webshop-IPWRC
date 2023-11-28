@@ -18,7 +18,7 @@ export class ItemPageComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.url.split('/')[2];
-    // this.product$ = this.productService.get(id);
+    this.product$ = this.productService.get(id);
   }
 
   addToCart(product: Product) {

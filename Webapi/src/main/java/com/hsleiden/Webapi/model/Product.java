@@ -11,7 +11,6 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String productId;
     private String title;
@@ -28,6 +27,7 @@ public class Product {
     }
     public Product(String title, String description,
                    double price, int quantity, boolean isSold, String imagePublicId, int availability) {
+        this.id = generateUUID();
         this.productId = generateUUID();
         this.title = title;
         this.description = description;
