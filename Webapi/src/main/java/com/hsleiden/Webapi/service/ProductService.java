@@ -31,7 +31,7 @@ public class ProductService {
 
         // Populate the image URL for each product
         products.forEach(product -> {
-            String imageUrl = cloudinaryService.constructImageUrl(product.getImageSrc());
+            String imageUrl = cloudinaryService.constructImageUrl(product.getImagePublicId());
             product.setImageSrc(imageUrl);
         });
 

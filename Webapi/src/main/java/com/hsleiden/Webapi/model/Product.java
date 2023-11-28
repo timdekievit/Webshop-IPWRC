@@ -19,6 +19,7 @@ public class Product {
     private double price;
     private int quantity;
     private boolean isSold;
+    private String imagePublicId;
     private String imageSrc;
     private int availability;
 
@@ -26,15 +27,16 @@ public class Product {
         this.productId = generateUUID();
     }
     public Product(String title, String description,
-                   double price, int quantity, boolean isSold, String imageSrc, int availability) {
+                   double price, int quantity, boolean isSold, String imagePublicId, int availability) {
         this.productId = generateUUID();
         this.title = title;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.isSold = isSold;
-        this.imageSrc = imageSrc;
+        this.imageSrc = "";
         this.availability = availability;
+        this.imagePublicId = imagePublicId;
     }
 
     private String generateUUID() {
@@ -97,6 +99,14 @@ public class Product {
 
     public void setSold(boolean isSold) {
         this.isSold = isSold;
+    }
+
+    public String getImagePublicId() {
+        return imagePublicId;
+    }
+
+    public void setImagePublicId(String imageSrc) {
+        this.imagePublicId = imagePublicId;
     }
 
     public String getImageSrc() {
