@@ -11,28 +11,9 @@ import { HttpClient} from '@angular/common/http';
  // TODO replace the dummy data with the server call and make sure i can receive a image file from the server.
  // TODO connect the image public id to the product.
 export class ProductService {
-  // create a list of items with 3 dummy items inside the list from the model item.ts
-  // products: Product[] = [
-  //   new Product('1', 'shoe', 10, 1, false, '../../../../assets/images/shoe.jpg'),
-  //   new Product('2', 'balloon', 20, 1, false, '../../../../assets/images/balloon.png'),
-  //   new Product('3', 'pizza', 30, 1, false, '../../../../assets/images/pizza.jpg'),
-  //   new Product('4', 'hat', 15, 1, false, '../../../../assets/images/hat.jpg'),
-  //   new Product('5', 'book', 8, 1, false, '../../../../assets/images/book.jpg'),
-  //   new Product('6', 'teddy bear', 25, 1, false, '../../../../assets/images/teddy.jpg'),
-  //   new Product('7', 'sunglasses', 18, 1, false, '../../../../assets/images/sunglasses.jpg'),
-  //   new Product('8', 'guitar', 150, 1, false, '../../../../assets/images/guitar.jpg'),
-  // ];
-
   webserver = "http://localhost:8080";
 
-
-
-  // private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
   private productsInShoppingCartSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
-
-  // later the code above will be replaced by the server call
-
-  //   constructor(private http: HttpClient) {}
 
   constructor(private http: HttpClient) {}
 
