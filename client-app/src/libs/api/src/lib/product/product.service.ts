@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of } from 'rxjs';
 import { Product } from 'src/libs/entities/src/lib/product/product';
-// import { HttpClient} from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 // import {AssignmentPortal } from '@funle/entities';
 
 @Injectable({
@@ -12,37 +12,41 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
  // TODO connect the image public id to the product.
 export class ProductService {
   // create a list of items with 3 dummy items inside the list from the model item.ts
-  products: Product[] = [
-    new Product('1', 'shoe', 10, 1, false, '../../../../assets/images/shoe.jpg'),
-    new Product('2', 'balloon', 20, 1, false, '../../../../assets/images/balloon.png'),
-    new Product('3', 'pizza', 30, 1, false, '../../../../assets/images/pizza.jpg'),
-    new Product('4', 'hat', 15, 1, false, '../../../../assets/images/hat.jpg'),
-    new Product('5', 'book', 8, 1, false, '../../../../assets/images/book.jpg'),
-    new Product('6', 'teddy bear', 25, 1, false, '../../../../assets/images/teddy.jpg'),
-    new Product('7', 'sunglasses', 18, 1, false, '../../../../assets/images/sunglasses.jpg'),
-    new Product('8', 'guitar', 150, 1, false, '../../../../assets/images/guitar.jpg'),
-  ];
+  // products: Product[] = [
+  //   new Product('1', 'shoe', 10, 1, false, '../../../../assets/images/shoe.jpg'),
+  //   new Product('2', 'balloon', 20, 1, false, '../../../../assets/images/balloon.png'),
+  //   new Product('3', 'pizza', 30, 1, false, '../../../../assets/images/pizza.jpg'),
+  //   new Product('4', 'hat', 15, 1, false, '../../../../assets/images/hat.jpg'),
+  //   new Product('5', 'book', 8, 1, false, '../../../../assets/images/book.jpg'),
+  //   new Product('6', 'teddy bear', 25, 1, false, '../../../../assets/images/teddy.jpg'),
+  //   new Product('7', 'sunglasses', 18, 1, false, '../../../../assets/images/sunglasses.jpg'),
+  //   new Product('8', 'guitar', 150, 1, false, '../../../../assets/images/guitar.jpg'),
+  // ];
 
-  private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
+  webserver = "http://localhost:8080";
+
+
+
+  // private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(this.products);
   private productsInShoppingCartSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
 
   // later the code above will be replaced by the server call
 
   //   constructor(private http: HttpClient) {}
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  //   getAll = () => this.http.get<AssignmentPortal[]>('/api/assignments/');
-  getAll = () => this.productsSubject.asObservable();
+    getAll = () => this.http.get<Product[]>(this.webserver + '/api/products');
+  // getAll = () => this.productsSubject.asObservable();
 
   // the get function below should not return undefined how to garantee that?
   // get = (id: string) => of(this.itemsSubject.getValue().find((item) => item.id === id));
   get = (id: string) => {
-    const product = this.productsSubject.getValue().find((product) => product.id === id);
-    if (product === undefined) {
-      return of(new Product('', '', 0, 0, false, ''));
-    }
-    return of(product);
+    // const product = this.productsSubject.getValue().find((product) => product.id === id);
+    // if (product === undefined) {
+    //   return of(new Product('', '', 0, 0, false, ''));
+    // }
+    // return of(product);
   }
 
 
