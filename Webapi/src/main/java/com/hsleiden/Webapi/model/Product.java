@@ -1,8 +1,6 @@
 package com.hsleiden.Webapi.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.util.UUID;
@@ -34,7 +32,7 @@ public class Product {
         this.price = price;
         this.quantity = quantity;
         this.isSold = isSold;
-        this.imageSrc = "";
+        this.imageSrc = null;
         this.availability = availability;
         this.imagePublicId = imagePublicId;
     }

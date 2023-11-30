@@ -6,7 +6,6 @@ import com.hsleiden.Webapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ProductService {
@@ -33,9 +32,10 @@ public class ProductService {
 
         // Populate the image URL for each product
         products.forEach(product -> {
-            if (Objects.equals(product.getImageSrc(), "")) {
+            if (product.getImageSrc() == null || product.getImageSrc().isEmpty()) {
                 String imageUrl = cloudinaryService.constructImageUrl(product.getImagePublicId());
                 product.setImageSrc(imageUrl);
+                productRepository.save(product);
             }
         });
 
@@ -44,16 +44,14 @@ public class ProductService {
 
     public Product getProductWithImageUrl(String id) {
 
-        System.out.println("id: " + id);
-
         Product product = productRepository.findById(id).orElse(null);
 
 
         if (product != null) {
-            if (Objects.equals(product.getImageSrc(), "")) {
+            if (product.getImageSrc() == null || product.getImageSrc().isEmpty()) {
                 String imageUrl = cloudinaryService.constructImageUrl(product.getImagePublicId());
-                System.out.println("imageUrl: " + imageUrl);
                 product.setImageSrc(imageUrl);
+                productRepository.save(product);
             }
         }
         return product;
