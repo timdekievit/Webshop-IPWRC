@@ -6,12 +6,14 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties;
 
 import java.util.UUID;
 
+// TODO fix the errors + add UserController and UserService and JWT authentication
 @Entity
-public class User extends SecurityProperties.User {
+public class User {
 
     @Id
     private String id;
     private String email;
+    private String password;
     private boolean isAdmin;
     // Add other user-related fields as needed
 
@@ -19,9 +21,10 @@ public class User extends SecurityProperties.User {
         this.id = generateUUID();
     }
 
-    public User(String email, boolean isAdmin) {
+    public User(String email, String password, boolean isAdmin) {
         this.id = generateUUID();
         this.email = email;
+        this.password = password;
         this.isAdmin = isAdmin;
         // Initialize other user-related fields as needed
     }
@@ -46,6 +49,13 @@ public class User extends SecurityProperties.User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isAdmin() {
