@@ -3,8 +3,11 @@ package com.hsleiden.Webapi.service;
 import com.hsleiden.Webapi.model.User;
 import com.hsleiden.Webapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,20 +33,20 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
-    public User updateUser(String id, User updatedUser) {
-        User existingUser = userRepository.findById(id).orElse(null);
-        if (existingUser != null) {
-            // Update fields based on your requirements
-            existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setPassword(updatedUser.getPassword());
-            existingUser.setAdmin(updatedUser.isAdmin());
-            // Update other user-related fields as needed
-
-            return userRepository.save(existingUser);
-        } else {
-            return null;
-        }
-    }
+//    public User updateUser(String id, User updatedUser) {
+//        User existingUser = userRepository.findById(id).orElse(null);
+//        if (existingUser != null) {
+//            // Update fields based on your requirements
+//            existingUser.setEmail(updatedUser.getEmail());
+//            existingUser.setPassword(updatedUser.getPassword());
+//            existingUser.setAdmin(updatedUser.isAdmin());
+//            // Update other user-related fields as needed
+//
+//            return userRepository.save(existingUser);
+//        } else {
+//            return null;
+//        }
+//    }
 
     public boolean deleteUser(String id) {
         if (userRepository.existsById(id)) {
@@ -52,5 +55,17 @@ public class UserService {
         } else {
             return false;
         }
+    }
+
+//    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = (User) userRepository.findByEmail(username).orElse(null);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getPassword(),
+                new ArrayList<>()); // Add roles if needed
     }
 }

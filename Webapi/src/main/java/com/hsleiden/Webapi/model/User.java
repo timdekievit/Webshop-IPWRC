@@ -1,70 +1,97 @@
 package com.hsleiden.Webapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 // TODO fix the errors + add UserController and UserService and JWT authentication
 @Entity
-public class User {
+@Data
+@Builder
+@AllArgsConstructor
+public class User implements UserDetails {
 
     @Id
     private String id;
     private String email;
     private String password;
-    private boolean isAdmin;
-    // Add other user-related fields as needed
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public static class UserBuilder {
+        private String email;
+        private String password;
+        private Role role;
+    }
 
     public User() {
         this.id = generateUUID();
     }
 
-    public User(String email, String password, boolean isAdmin) {
+    public User(String email, String password, Role role) {
         this.id = generateUUID();
         this.email = email;
         this.password = password;
-        this.isAdmin = isAdmin;
-        // Initialize other user-related fields as needed
+        this.role = role;
     }
 
     private String generateUUID() {
         return UUID.randomUUID().toString();
     }
 
-    // Getters and setters
-
-    public String getId() {
-        return id;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    @Override
     public String getPassword() {
         return password;
     }
-    public void setPassword(String password) {
-        this.password = password;
+
+    @Override
+    public String getUsername() {
+        return email;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
     }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+//    public boolean isAdmin() {
+//        return isAdmin;
+//    }
+//
+//    public void setAdmin(boolean isAdmin) {
+//        this.isAdmin = isAdmin;
+//    }
 
     // Add getters and setters for other user-related fields
 }

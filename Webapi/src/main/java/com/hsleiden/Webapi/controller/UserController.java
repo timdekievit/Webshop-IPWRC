@@ -5,6 +5,7 @@ import com.hsleiden.Webapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,11 +15,28 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+//    private final JwtTokenProvider jwtTokenProvider;
+    private final UserDetailsService userDetailsService;
+
+
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserDetailsService userDetailsService) {
         this.userService = userService;
+        this.userDetailsService = userDetailsService;
     }
+
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody User loginUser) {
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(loginUser.getEmail(), loginUser.getPassword())
+//        );
+//
+//        UserDetails userDetails = userDetailsService.loadUserByUsername(loginUser.getEmail());
+//        String token = jwtTokenProvider.generateToken(userDetails);
+//
+//        return ResponseEntity.ok(token);
+//    }
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
@@ -43,15 +61,15 @@ public class UserController {
         return ResponseEntity.ok(createdUser);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updatedUser) {
-        User user = userService.updateUser(id, updatedUser);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updatedUser) {
+//        User user = userService.updateUser(id, updatedUser);
+//        if (user != null) {
+//            return ResponseEntity.ok(user);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
