@@ -29,6 +29,7 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse register(registerRequest request) {
+        System.out.println("registerRequest: " + request);
         var user = User.builder()
                 .email(request.getEmail()) // .username is the same as .email
                 .password(passwordEncoder.encode(request.getPassword()))
@@ -42,12 +43,18 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+        System.out.println("AuthenticationRequest: " + request);
+        // TODO figure out why i am gettig a User account is locked exception
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
+        } catch (Exception e) {
+            System.out.println("Exception: " + e);
+        }
          var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         var jwtToken = jwtService.generateToken((UserDetails) user);

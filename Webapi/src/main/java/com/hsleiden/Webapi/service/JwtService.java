@@ -31,6 +31,7 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
+        System.out.println("userDetails: " + userDetails);
         return generateToken(new HashMap<>(), userDetails);
     }
 
@@ -40,7 +41,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // 1 day
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 1 day
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

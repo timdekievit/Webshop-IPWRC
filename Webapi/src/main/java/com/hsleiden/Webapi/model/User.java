@@ -5,49 +5,41 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
-// TODO fix the errors + add UserController and UserService and JWT authentication
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor // Added no-args constructor
 public class User implements UserDetails {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Changed ID type to Long
+
+    @Column(unique = true)
     private String email;
+
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public static class UserBuilder {
-        private String email;
-        private String password;
-        private Role role;
-    }
-
-    public User() {
-        this.id = generateUUID();
-    }
-
     public User(String email, String password, Role role) {
-        this.id = generateUUID();
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    private String generateUUID() {
-        return UUID.randomUUID().toString();
-    }
+//    private String generateUUID() {
+//        return UUID.randomUUID().toString();
+//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
