@@ -10,6 +10,7 @@
             </a></li>
             <li><a [routerLink]="['/login']" class="login-link">Login</a></li>
             <li><a [routerLink]="['/register']" class="register-link">Register</a></li>
+            <li><a [routerLink]="['/account']" class="account">Account Details</a></li>
         </ul>
     </nav>
     <app-shopping-cart *ngIf="isCartOpen$ | async"></app-shopping-cart>

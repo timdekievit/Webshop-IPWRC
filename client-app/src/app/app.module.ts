@@ -11,6 +11,8 @@ import { ItemPageComponent } from './item-page/item-page.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
     ItemPageComponent,
     LoginComponent,
     RegisterComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
   ],

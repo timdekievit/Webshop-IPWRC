@@ -44,7 +44,7 @@ public class AuthenticationService {
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         System.out.println("AuthenticationRequest: " + request);
-        // TODO figure out why i am gettig a User account is locked exception
+        // TODO figure out why i am getting a User account is locked exception
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
