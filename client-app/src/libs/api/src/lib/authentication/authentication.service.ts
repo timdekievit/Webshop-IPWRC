@@ -7,8 +7,6 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root',
 })
 
- // TODO replace the dummy data with the server call and make sure i can receive a image file from the server.
- // TODO connect the image public id to the product.
 export class AuthenticationService {
     webserver = 'http://localhost:8080';
     token: string | null = null;

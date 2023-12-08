@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { JwtService } from 'src/libs/api/src/lib/product/jwt.service';
+import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
+
+// TODO maak een duidelijk overzicht van de account gegevens.
 export class AccountComponent implements OnInit {
 
   // get jwt token data from local storage

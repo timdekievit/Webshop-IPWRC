@@ -21,7 +21,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Changed ID type to Long
+    private Long id;
 
     @Column(unique = true)
     private String email;
@@ -31,15 +31,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private ShoppingCart shoppingCart;
+
     public User(String email, String password, Role role) {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.shoppingCart = new ShoppingCart(this);
     }
-
-//    private String generateUUID() {
-//        return UUID.randomUUID().toString();
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -63,12 +63,12 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -76,14 +76,4 @@ public class User implements UserDetails {
         return true;
     }
 
-
-//    public boolean isAdmin() {
-//        return isAdmin;
-//    }
-//
-//    public void setAdmin(boolean isAdmin) {
-//        this.isAdmin = isAdmin;
-//    }
-
-    // Add getters and setters for other user-related fields
 }

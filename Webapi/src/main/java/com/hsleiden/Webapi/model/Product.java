@@ -1,16 +1,25 @@
 package com.hsleiden.Webapi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+// TODO update this class to use with lombok
 @Entity
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @Id
-    private String id;
-    private String productId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long productId;
     private String title;
     private String description;
     private double price;
@@ -19,14 +28,12 @@ public class Product {
     private String imagePublicId;
     private String imageSrc;
     private int availability;
+    @ManyToOne
+    @JoinColumn(name = "shopping_cart_id")  // Adjust the column name accordingly
+    private ShoppingCart shoppingCart;
 
-    public Product() {
-        this.productId = generateUUID();
-    }
     public Product(String title, String description,
-                   double price, int quantity, boolean isSold, String imagePublicId, int availability) {
-        this.id = generateUUID();
-        this.productId = generateUUID();
+                   double price, int quantity, boolean isSold, String imagePublicId, int availability, ShoppingCart shoppingCart) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -35,93 +42,9 @@ public class Product {
         this.imageSrc = null;
         this.availability = availability;
         this.imagePublicId = imagePublicId;
+        this.shoppingCart = shoppingCart;
     }
 
-    private String generateUUID() {
-        return UUID.randomUUID().toString();
-    }
-
-    // Getters and setters
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public boolean isSold() {
-        return isSold;
-    }
-
-    public void setSold(boolean isSold) {
-        this.isSold = isSold;
-    }
-
-    public String getImagePublicId() {
-        return imagePublicId;
-    }
-
-    public void setImagePublicId(String imageSrc) {
-        this.imagePublicId = imagePublicId;
-    }
-
-    public String getImageSrc() {
-        return imageSrc;
-    }
-
-    public void setImageSrc(String imageSrc) {
-        this.imageSrc = imageSrc;
-    }
-
-    public int getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(int availability) {
-        this.availability = availability;
-    }
 }
 
 
