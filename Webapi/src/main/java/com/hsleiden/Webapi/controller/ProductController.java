@@ -26,7 +26,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProductWithImageUrl(@PathVariable String id) {
+    public Product getProductWithImageUrl(@PathVariable Long id) {
         return productService.getProductWithImageUrl(id);
     }
 }

@@ -24,9 +24,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(String id) {
-        return userRepository.findById(id).orElse(null);
-    }
+//    public User getUserById(String id) {
+//        return userRepository.findById(id).orElse(null);
+//    }
 
     public User createUser(User newUser) {
         // You may want to perform validation or additional checks here
@@ -48,14 +48,14 @@ public class UserService {
 //        }
 //    }
 
-    public boolean deleteUser(String id) {
-        if (userRepository.existsById(id)) {
-            userRepository.deleteById(id);
-            return true;
-        } else {
-            return false;
-        }
-    }
+//    public boolean deleteUser(String id) {
+//        if (userRepository.existsById(id)) {
+//            userRepository.deleteById(id);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
 
 //    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
