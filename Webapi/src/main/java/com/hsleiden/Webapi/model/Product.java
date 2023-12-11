@@ -2,11 +2,9 @@ package com.hsleiden.Webapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 // TODO update this class to use with lombok
@@ -29,13 +27,13 @@ public class Product {
     private String imagePublicId;
     private String imageSrc;
     private int availability;
-    @ManyToOne
-    @JoinColumn(name = "shopping_cart_id")  // Adjust the column name accordingly
+    @ManyToMany(mappedBy = "products")
     @JsonIgnore
-    private ShoppingCart shoppingCart;
+    @ToString.Exclude
+    private List<ShoppingCart> shoppingCarts;
 
     public Product(String title, String description,
-                   double price, int quantity, boolean isSold, String imagePublicId, int availability, ShoppingCart shoppingCart) {
+                   double price, int quantity, boolean isSold, String imagePublicId, int availability) {
         this.title = title;
         this.description = description;
         this.price = price;
@@ -44,7 +42,6 @@ public class Product {
         this.imageSrc = null;
         this.availability = availability;
         this.imagePublicId = imagePublicId;
-        this.shoppingCart = shoppingCart;
     }
 
 }

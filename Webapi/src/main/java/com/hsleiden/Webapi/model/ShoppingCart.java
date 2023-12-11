@@ -22,7 +22,11 @@ public class ShoppingCart {
     @ToString.Exclude
     private User user;
 
-    @OneToMany(mappedBy = "shoppingCart")
+    @ManyToMany
+    @JoinTable(
+        name = "shopping_cart_products",
+        joinColumns = @JoinColumn(name = "shopping_cart_id"),
+        inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 
     public ShoppingCart(User user) {
@@ -30,5 +34,6 @@ public class ShoppingCart {
     }
 
     public void addProduct(Product product) {
+        this.products.add(product);
     }
 }

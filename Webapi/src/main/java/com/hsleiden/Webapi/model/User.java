@@ -33,6 +33,7 @@ public class User implements UserDetails {
     private Role role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private ShoppingCart shoppingCart;
 
     public User(String email, String password, Role role) {

@@ -25,4 +25,18 @@ export class ShoppingCartService {
     // Make the HTTP request with the headers
     return this.http.get<Product[]>(this.webserver + '/api/shoppingCart', { headers });
   }
+
+  add = (product: Product) => {
+    // Get the JWT token from your authentication service (replace 'your-token' with the actual token)
+    const authToken = this.jwtService.getToken();
+
+    // Set the headers with the Authorization header containing the JWT token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${authToken}`);
+
+    console.log('headers', headers);
+    console.log('product', product);
+
+    // Make the HTTP request with the headers
+    return this.http.post<any>(this.webserver + '/api/shoppingCart/addProduct', {"id": product.id}, { headers });
+  }
 }
