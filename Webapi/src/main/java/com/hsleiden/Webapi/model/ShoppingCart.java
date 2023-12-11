@@ -1,10 +1,8 @@
 package com.hsleiden.Webapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -21,6 +19,7 @@ public class ShoppingCart {
 
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
+    @ToString.Exclude
     private User user;
 
     @OneToMany(mappedBy = "shoppingCart")

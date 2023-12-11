@@ -1,5 +1,6 @@
 package com.hsleiden.Webapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,7 +39,6 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.role = role;
-        this.shoppingCart = new ShoppingCart(this);
     }
 
     @Override

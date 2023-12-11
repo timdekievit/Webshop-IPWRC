@@ -1,5 +1,6 @@
 package com.hsleiden.Webapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +31,7 @@ public class Product {
     private int availability;
     @ManyToOne
     @JoinColumn(name = "shopping_cart_id")  // Adjust the column name accordingly
+    @JsonIgnore
     private ShoppingCart shoppingCart;
 
     public Product(String title, String description,

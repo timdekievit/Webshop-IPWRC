@@ -4,6 +4,8 @@ import com.hsleiden.Webapi.controller.AuthenticationRequest;
 import com.hsleiden.Webapi.controller.AuthenticationResponse;
 import com.hsleiden.Webapi.controller.registerRequest;
 import com.hsleiden.Webapi.model.Role;
+import com.hsleiden.Webapi.model.ShoppingCart;
+import com.hsleiden.Webapi.repository.ShoppingCartRepository;
 import com.hsleiden.Webapi.repository.UserRepository;
 import com.hsleiden.Webapi.model.User;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +19,14 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UserRepository userRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
+    public AuthenticationService(UserRepository userRepository, ShoppingCartRepository shoppingCartRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
+        this.shoppingCartRepository = shoppingCartRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
@@ -36,6 +40,13 @@ public class AuthenticationService {
                 .role(Role.USER)
                 .build();
         userRepository.save(user);
+
+        var shoppingCart = ShoppingCart.builder()
+                .user(user)
+                .build();
+
+        shoppingCartRepository.save(shoppingCart);
+
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)

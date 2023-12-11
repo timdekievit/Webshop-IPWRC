@@ -1,6 +1,9 @@
 package com.hsleiden.Webapi.controller;
 
 import com.hsleiden.Webapi.model.ShoppingCart;
+import com.hsleiden.Webapi.model.User;
+import com.hsleiden.Webapi.repository.ShoppingCartRepository;
+import com.hsleiden.Webapi.repository.UserRepository;
 import com.hsleiden.Webapi.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +19,14 @@ public class ShoppingCartController {
 
     private final ShoppingCartService shoppingCartService;
 
+    private final UserRepository userRepository;
+    private final ShoppingCartRepository shoppingCartRepository;
+
     @Autowired
-    public ShoppingCartController(ShoppingCartService shoppingCartService) {
+    public ShoppingCartController(ShoppingCartService shoppingCartService, UserRepository userRepository, ShoppingCartRepository shoppingCartRepository) {
         this.shoppingCartService = shoppingCartService;
+        this.userRepository = userRepository;
+        this.shoppingCartRepository = shoppingCartRepository;
     }
 
 
@@ -32,6 +40,18 @@ public class ShoppingCartController {
         System.out.println("Email: " + email);
         System.out.println("Authentication: " + authentication.isAuthenticated());
         System.out.println("Authentication: " + authentication.getAuthorities());
+
+        var user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        System.out.println("User: " + user);
+
+        // get shoppingCart from the user
+//        var shoppingCart = shoppingCartRepository.findByUser((User) user);
+
+//        System.out.println("ShoppingCart: " + shoppingCart);
+
+
 
         // Call the shoppingCartService to get the shopping cart information for the user
 //        ShoppingCart shoppingCart = shoppingCartService.getShoppingCartByUsername(username);
