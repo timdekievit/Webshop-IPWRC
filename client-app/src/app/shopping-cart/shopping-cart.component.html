@@ -4,7 +4,7 @@
     <div *ngIf="(products$ | async)!.length === 0" class="empty-cart">
       Your cart is empty.
     </div>
-    <div *ngIf="(products$ | async)!.length > 0" class="cart-items">
+    <div *ngIf="((products$ | async)!.length > 0)" class="cart-items">
       <div *ngFor="let item of (products$ | async)" class="cart-item">
         <div class="item-details">
           <img [src]="item.imageSrc" alt="Product Image">
@@ -16,7 +16,11 @@
         </div>
         <button (click)="removeItemFromCart(item)">Remove</button>
       </div>
+      <div class="cart-total">
+        <h3>Total: ${{ getCartTotal()}}</h3>
+        <button (click)="GoToCheckout()">Checkout</button>
     </div>
-  </div>
+</div>
+    
  
   

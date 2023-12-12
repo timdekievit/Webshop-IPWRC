@@ -15,7 +15,7 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
 export class ItemPageComponent implements OnInit {
 
   product$: Observable<Product> = new Observable<Product>();
-  giftCard$: Observable<GiftCard> = new Observable<GiftCard>();
+ 
 
   constructor(private productService: ProductService, private route: Router, 
     private shoppingCartService: ShoppingCartService, private giftCardService: GiftCardService) { }
@@ -30,8 +30,6 @@ export class ItemPageComponent implements OnInit {
     this.shoppingCartService.add(product).subscribe((res) => console.log(res));
   }
 
-  getGiftCardAmount(id: string) {
-    this.giftCard$ = this.giftCardService.get(id);
-  }
+
 
 }

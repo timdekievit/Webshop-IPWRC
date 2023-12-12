@@ -1,0 +1,40 @@
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+</head>
+
+<body>
+    <div class="checkout-container">
+        <h2>Checkout</h2>
+        <form>
+            <div class="input-group">
+                <input type="text" placeholder="Full Name" name="fullName" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="Address" name="address" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="City" name="city" required>
+            </div>
+            <div class="input-group">
+                <input type="text" placeholder="ZIP Code" name="zipCode" required>
+            </div>
+            <div class="gift-card-group">
+                <h3>Use giftcard</h3>
+                <p>Do you have a giftcard? Enter the code below to use it on this purchase.</p>
+                <input type="text" placeholder="Enter giftcard code" #giftcardInput>
+                <button type="button" (click)="getGiftCardAmount(giftcardInput.value)">Use giftcard</button>
+                <p *ngIf="(giftCard$ | async) as giftCard">Your giftcard is worth ${{giftCard.amount}}</p>
+            </div>
+            <div class="input-group">
+                <input type="submit" value="Place Order">
+            </div>
+        </form>
+    </div>
+
+</body>
+
+
+

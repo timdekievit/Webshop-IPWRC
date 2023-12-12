@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of, startWith } from 'rxjs';
 import { ShoppingCartService } from 'src/libs/api/src/lib/shoppingCart/shoppingCart.service';
 import { Product } from 'src/libs/entities/src/lib/product/product';
@@ -10,8 +11,9 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
 })
 export class ShoppingCartComponent implements OnInit {
   products$: Observable<Product[]> = of([]);
+  amount: number = 0;
 
-  constructor(private shoppingCartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService, private router: Router) { }
   
   ngOnInit(): void {
     this.shoppingCartService.get().subscribe(
@@ -19,10 +21,24 @@ export class ShoppingCartComponent implements OnInit {
         console.log(data);
       });
       this.products$ = this.shoppingCartService.get().pipe(startWith([]));
+      this.products$.subscribe((products) => {
+        this.amount = 0;
+        products.forEach((product) => {
+          this.amount += product.price;
+        });
+      });
   }
 
   removeItemFromCart(product: Product) {
       this.shoppingCartService.del(product).subscribe()
     }
+
+  getCartTotal() {
+    return this.amount;
+  }  
+
+  GoToCheckout() {
+    this.router.navigate(['/checkout']);
+  }
 
 }
