@@ -55,18 +55,15 @@ public class AuthenticationService {
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         System.out.println("AuthenticationRequest: " + request);
-        // TODO figure out why i am getting a User account is locked exception
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.getEmail(),
-                            request.getPassword()
-                    )
-            );
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
-        }
-         var user = userRepository.findByEmail(request.getEmail())
+
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+
+        var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
         var jwtToken = jwtService.generateToken((UserDetails) user);
         return AuthenticationResponse.builder()

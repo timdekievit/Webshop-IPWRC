@@ -33,7 +33,6 @@ export class AuthenticationService {
     private setToken(token: string | null): void {
       this.token = token;
 
-      // You can also store the token in local storage or a cookie for persistence
       if (this.token) {
         localStorage.setItem('token', this.token);
       }

@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor // Added no-args constructor
+@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id

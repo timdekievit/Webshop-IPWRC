@@ -1,12 +1,11 @@
 package com.hsleiden.Webapi.repository;
 
-import com.hsleiden.Webapi.model.Product;
+import com.hsleiden.Webapi.model.GiftCard;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface GiftCardRepository extends JpaRepository<GiftCard, UUID> {
 }
-
