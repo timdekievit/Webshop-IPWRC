@@ -57,4 +57,16 @@ public class ShoppingCartService {
 
         return (User) user;
     }
+
+    public List<Product> deleteProductFromCart(Long id) {
+        User user = getAuthenticatedUser();
+        ShoppingCart shoppingCart = user.getShoppingCart();
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        shoppingCart.removeProduct(product);
+        shoppingCartRepository.save(shoppingCart);
+        return shoppingCart.getProducts();
+    }
 }

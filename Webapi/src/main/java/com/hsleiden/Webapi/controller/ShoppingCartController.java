@@ -36,4 +36,9 @@ public class ShoppingCartController {
     public ResponseEntity<List<Product>> addProductToShoppingCart(@RequestBody Map<String, String> payload) {
         return ResponseEntity.ok().body(shoppingCartService.addProductToCart(payload));
     }
+
+    @DeleteMapping("/deleteProduct/{id}")
+    public ResponseEntity<List<Product>> deleteProductFromShoppingCart(@PathVariable Long id) {
+        return ResponseEntity.ok().body(shoppingCartService.deleteProductFromCart(id));
+    }
 }
