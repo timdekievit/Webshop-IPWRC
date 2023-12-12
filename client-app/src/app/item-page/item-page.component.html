@@ -41,6 +41,14 @@
             <p>Curabitur aliquam orci eu justo convallis, vel dictum odio varius. Nulla facilisi. Fusce eu erat a
                 enim volutpat dictum eget eu nisi. Vivamus fermentum lectus eu accumsan vestibulum.</p>
         </div>
+
+        <div class="giftcard">
+            <h3>Use giftcard</h3>
+            <p>Do you have a giftcard? Enter the code below to use it on this purchase.</p>
+            <input type="text" placeholder="Enter giftcard code" #giftcardInput>
+            <button (click)="getGiftCardAmount(giftcardInput.value)">Use giftcard</button>
+            <p *ngIf="(giftCard$ | async) as giftCard">Your giftcard is worth ${{giftCard.amount}}</p>
+        </div>
     </div>
 
     <!-- Same footer as previous -->
