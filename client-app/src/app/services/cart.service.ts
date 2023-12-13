@@ -18,6 +18,10 @@ export class CartService {
         console.log(this.isCartOpenSubject.getValue());
     }
 
+    public setCartClosed() {
+        this.isCartOpenSubject.next(false);
+    }
+
     public get isCartOpen() {
         return this.isCartOpenSubject.asObservable();
     }

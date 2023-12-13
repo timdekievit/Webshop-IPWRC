@@ -1,66 +1,188 @@
+// body {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     margin: 0;
+//     font-family: Arial, sans-serif;
+// }
+
+// .checkout-container {
+//     width: 400px;
+//     padding: 30px;
+//     border: 1px solid #ddd;
+//     border-radius: 5px;
+//     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+// }
+
+// .checkout-container h2 {
+//     text-align: center;
+//     margin-bottom: 20px;
+// }
+
+// .input-group {
+//     margin-bottom: 20px;
+// }
+
+// .input-group input {
+//     width: 100%;
+//     padding: 10px;
+//     border: 1px solid #ddd;
+//     border-radius: 5px;
+// }
+
+// .input-group input[type="submit"] {
+//     background-color: #4CAF50;
+//     color: white;
+//     cursor: pointer;
+// }
+
+// .input-group input[type="submit"]:hover {
+//     background-color: #45a049;
+// }
+
+// .gift-card-group {
+//     margin-bottom: 20px;
+// }
+
+// .gift-card-group input {
+//     width: 70%;
+//     padding: 10px;
+//     border: 1px solid #ddd;
+//     border-radius: 5px;
+// }
+
+// .gift-card-group button {
+//     background-color: #4CAF50;
+//     color: white;
+//     padding: 10px;
+//     border: none;
+//     border-radius: 5px;
+//     cursor: pointer;
+// }
+
+// .gift-card-group button:hover {
+//     background-color: #45a049;
+// }
+
+// img {
+//     width: 50px;
+//     height: 50px;
+//     margin-right: 10px;
+// }
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
     margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 .checkout-container {
-    width: 400px;
-    padding: 30px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.checkout-container h2 {
-    text-align: center;
-    margin-bottom: 20px;
+h2 {
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
 }
 
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
-.input-group input {
+input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.input-group input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-.input-group input[type="submit"]:hover {
-    background-color: #45a049;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .gift-card-group {
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
-.gift-card-group input {
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.gift-card-group button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
+button {
+    padding: 10px 15px;
+    background-color: #4caf50;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.gift-card-group button:hover {
+button:hover {
     background-color: #45a049;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.cart-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart {
+    color: #888;
+}
+
+.cart-items {
+    margin-top: 20px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.item-details {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    max-width: 80px;
+    margin-right: 10px;
+}
+
+.item-info h3 {
+    margin: 0;
+    color: #333;
+}
+
+button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.cart-total {
+    margin-top: 20px;
+    text-align: right;
+}
+
+h3 {
+    color: #333;
 }

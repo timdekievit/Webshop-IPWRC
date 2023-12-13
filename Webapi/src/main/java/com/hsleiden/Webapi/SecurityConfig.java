@@ -41,40 +41,6 @@ public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFil
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-//    @Bean
-//    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-//        AuthenticationManager authenticationManager = null;
-//        return new JwtAuthenticationFilter(null);
-//    }
-//
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-//        return authenticationConfiguration.getAuthenticationManager();
-//    }
-//
-//    @Override
-//    public void configure(HttpSecurity http) throws Exception {
-//        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-//        http.csrf((csrf) -> csrf.disable())
-//                .authorizeRequests()
-//                .requestMatchers("/api/users").hasRole("ADMIN")
-//                .requestMatchers("/api/users/**").authenticated()
-//                .anyRequest().permitAll()
-//                .and()
-//                .httpBasic(withDefaults());
-//    }
-
-//    public void configure(HttpSecurity http) throws Exception {
-//        http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
-//        http.csrf((csrf) -> csrf.disable())
-//                .authorizeHttpRequests((authorize) -> authorize
-//                        .requestMatchers("/api/users").hasRole("ADMIN")
-//                        .requestMatchers("/api/users/**").authenticated()
-//                        .anyRequest().permitAll()
-//                )
-//                .and()
-//                .httpBasic(withDefaults());
-//    }
+    
 }
 
