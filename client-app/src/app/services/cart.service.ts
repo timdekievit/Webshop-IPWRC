@@ -9,8 +9,6 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
 })
 export class CartService {
 
-    // this is a temporary solution until i figure out a better way.
-
     private isCartOpenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     public toggleCart() {

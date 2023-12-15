@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account/account.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     RegisterComponent,
     AccountComponent,
     CheckoutComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

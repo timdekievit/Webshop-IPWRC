@@ -23,5 +23,10 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    // Add other endpoints as needed
+    @PostMapping
+    public Order createOrder(@RequestBody Order order) {
+        return orderService.createOrder(order);
+    }
+
+    
 }
