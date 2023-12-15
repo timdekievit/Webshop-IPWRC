@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
-import { Product } from 'src/libs/entities/src/lib/product/product';
-// import { HttpClient} from '@angular/common/http';
-// import {AssignmentPortal } from '@funle/entities';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

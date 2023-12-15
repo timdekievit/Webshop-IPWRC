@@ -16,9 +16,6 @@ export class ConfirmationComponent implements OnInit {
   
   ngOnInit(): void {
     this.order$ = this.orderHandlingService.getCurrentOrder();
-    this.order$.subscribe((order) => {
-      console.log(order);
-    });
   }
 
 }
