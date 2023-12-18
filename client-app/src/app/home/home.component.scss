@@ -37,39 +37,39 @@ h1 {
     margin-top: 20px;
 }
 
-.product {
-    width: 30%;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-}
+// .product {
+//     width: 30%;
+//     margin-bottom: 20px;
+//     border: 1px solid #ccc;
+//     padding: 10px;
+// }
 
-.product img {
-    width: auto;
-    height: 200px;
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
-}
+// .product img {
+//     width: auto;
+//     height: 200px;
+//     max-width: 100%;
+//     display: block;
+//     margin: 0 auto;
+// }
 
-.product h3 {
-    font-size: 20px;
-    margin-bottom: 5px;
-}
+// .product h3 {
+//     font-size: 20px;
+//     margin-bottom: 5px;
+// }
 
-.product p {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
+// .product p {
+//     font-size: 16px;
+//     margin-bottom: 10px;
+// }
 
-.product button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-}
+// .product button {
+//     background-color: #333;
+//     color: #fff;
+//     border: none;
+//     padding: 10px 15px;
+//     font-size: 16px;
+//     cursor: pointer;
+// }
 
 /* Footer styles */
 footer {
@@ -95,6 +95,13 @@ footer {
     top: 10px;
     right: 10px;
   }
+
+  app-product {
+    width: 30%; 
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
   
   app-shopping-cart {
     position: absolute;
@@ -110,13 +117,13 @@ footer {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-    .product {
+    app-product {
         width: 45%;
     }
 }
 
 @media (max-width: 480px) {
-    .product {
+    app-product {
         width: 100%;
     }
 }

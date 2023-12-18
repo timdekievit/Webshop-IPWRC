@@ -1,0 +1,37 @@
+// :host {
+//     width: 100%;
+// }
+
+// .product {
+//     width: 30%; 
+//     margin-bottom: 20px;
+//     border: 1px solid #ccc;
+//     padding: 10px;
+// }
+
+img {
+    width: auto;
+    height: 200px;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}

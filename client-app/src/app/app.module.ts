@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account/account.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     AccountComponent,
     CheckoutComponent,
     ConfirmationComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

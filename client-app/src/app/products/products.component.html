@@ -22,12 +22,13 @@
 
         <h2>Product Listing</h2>
         <div class="product-list">
-            <div class="product" *ngFor="let product of (products$ | async)">
+            <!-- <div class="product" *ngFor="let product of (products$ | async)">
                 <img src={{product.imageSrc}} alt="Product 1" [routerLink]="['/item', product.id]">
                 <h3>{{product.title}}</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 <button (click)="addToCart(product)">Add to Cart</button>
-            </div>
+            </div> -->
+            <app-product *ngFor="let product of (products$ | async)" [product]="product"></app-product>
         </div>
     </div>
 

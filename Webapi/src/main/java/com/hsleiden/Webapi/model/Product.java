@@ -7,7 +7,6 @@ import lombok.*;
 import java.util.List;
 import java.util.UUID;
 
-// TODO update this class to use with lombok
 @Entity
 @Data
 @Builder

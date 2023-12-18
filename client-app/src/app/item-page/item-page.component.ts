@@ -30,6 +30,4 @@ export class ItemPageComponent implements OnInit {
     this.shoppingCartService.add(product).subscribe((res) => console.log(res));
   }
 
-
-
 }
