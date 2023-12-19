@@ -17,7 +17,6 @@ import { OrderHandlingService } from '../services/orderHandling.service';
   styleUrls: ['./checkout.component.scss']
 })
 
-// TODO continue expanding this component
 export class CheckoutComponent implements OnInit {
   giftCard$: Observable<GiftCard> = new Observable<GiftCard>();
   products$: Observable<Product[]> = new Observable<Product[]>();

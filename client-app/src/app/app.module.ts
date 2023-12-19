@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -16,6 +15,7 @@ import { AccountComponent } from './account/account.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ProductComponent } from './components/product/product.component';
+import { ManagementComponent } from './management/management.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +31,7 @@ import { ProductComponent } from './components/product/product.component';
     CheckoutComponent,
     ConfirmationComponent,
     ProductComponent,
+    ManagementComponent,
   ],
   imports: [
     BrowserModule,

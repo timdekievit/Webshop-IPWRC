@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
-import { LoginData } from 'src/libs/entities/src/lib/product/LoginData';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { LoginData } from 'src/libs/requestsData/LoginData';
+import { UpdateUserData } from 'src/libs/requestsData/UpdateUserData';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,11 @@ export class AuthenticationService {
       return this.authenticate(user, '/api/auth/register');
     }
 
-    private authenticate(user: LoginData, endpoint: string): Observable<any> {
+    update(user: UpdateUserData): Observable<any> {
+      return this.authenticate(user, '/api/auth/update');
+    }
+
+    private authenticate(user: any, endpoint: string): Observable<any> {
       return this.http.post(`${this.webserver}${endpoint}`, user).pipe(
         tap((response: any) => {
           this.setToken(response.token);
