@@ -24,5 +24,4 @@ export class ProductsComponent implements OnInit {
     this.shoppingCartService.add(product).subscribe((data) => console.log(data));
   }
   
-
 }

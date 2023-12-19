@@ -1,55 +1,71 @@
- /* Same reset styles and header/navigation as previous */
 
-        /* Main content styles */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+ .container {
+     max-width: 1200px;
+     margin: 0 auto;
+     padding: 20px;
+ }
 
-        /* Product listing styles */
-        .product-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+ .product-list {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between;
+     margin-top: 20px;
+ }
 
-        app-product {
-            width: 30%; 
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
+ .product-item {
+    width: 30%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
 
-        .search-bar {
-            margin-top: 20px;
-            text-align: center;
-        }
+    text-decoration: none;
+    color: inherit;
+    display: block;
 
-        .search-input {
-            width: 70%;
-            padding: 8px;
-            font-size: 16px;
-        }
+    &:hover {
+        box-shadow: 0 0 5px 2px #ccc;
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
+}
 
-        .search-button {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 8px 15px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        @media (max-width: 768px) {
-            app-product {
-                width: 45%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            app-product {
-                width: 100%;
-            }
-        }
+ .search-bar {
+     margin-top: 20px;
+     text-align: center;
+ }
+
+ .search-input {
+     width: 70%;
+     padding: 8px;
+     font-size: 16px;
+ }
+
+ .search-button {
+     background-color: #333;
+     color: #fff;
+     border: none;
+     padding: 8px 15px;
+     font-size: 16px;
+     cursor: pointer;
+ }
+
+ @media (max-width: 768px) {
+     .product-item {
+         width: 45%;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .product-item{
+         width: 100%;
+     }
+ }

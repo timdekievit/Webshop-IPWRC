@@ -17,7 +17,10 @@
     <div class="container">
         <h2>Featured Products</h2>
         <div class="featured-products">
-            <app-product *ngFor="let product of randomProducts" [product]="product"></app-product>
+            <a class="product-item" *ngFor="let product of (products$ | async)">
+                <app-product [product]="product" [routerLink]="['/item', product.id]"></app-product>
+                <button (click)="addToCart(product)">Add to Cart</button>
+            </a>
         </div>
     </div>
 

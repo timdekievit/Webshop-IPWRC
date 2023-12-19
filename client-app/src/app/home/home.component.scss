@@ -37,41 +37,41 @@ h1 {
     margin-top: 20px;
 }
 
-// .product {
-//     width: 30%;
-//     margin-bottom: 20px;
-//     border: 1px solid #ccc;
-//     padding: 10px;
-// }
+.product-item {
+    width: 30%;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
 
-// .product img {
-//     width: auto;
-//     height: 200px;
-//     max-width: 100%;
-//     display: block;
-//     margin: 0 auto;
-// }
+    text-decoration: none;
+    color: inherit;
+    display: block;
 
-// .product h3 {
-//     font-size: 20px;
-//     margin-bottom: 5px;
-// }
+    &:hover {
+        box-shadow: 0 0 5px 2px #ccc;
+        background-color: #f0f0f0;
+        cursor: pointer;
+    }
+}
 
-// .product p {
-//     font-size: 16px;
-//     margin-bottom: 10px;
-// }
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; // Smooth transition effect
 
-// .product button {
-//     background-color: #333;
-//     color: #fff;
-//     border: none;
-//     padding: 10px 15px;
-//     font-size: 16px;
-//     cursor: pointer;
-// }
+    &:hover {
+        background-color: #555; // Darker color when hovered
+    }
 
-/* Footer styles */
+    &:active {
+        background-color: #777; // Even darker color when clicked
+    }
+}
+
 footer {
     background-color: #333;
     color: #fff;
@@ -79,14 +79,6 @@ footer {
     padding: 10px;
     margin-top: 30px;
 }
-
-
-/* css for the shopping-cart */
-
-// /* home.component.css */
-// .home-container {
-//     position: relative;
-//   }
   
   .cart-icon {
     font-size: 24px;
@@ -96,13 +88,6 @@ footer {
     right: 10px;
   }
 
-  app-product {
-    width: 30%; 
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
   app-shopping-cart {
     position: absolute;
     top: 40px; /* Adjust this value to control the space between the icon and the card */
@@ -117,13 +102,13 @@ footer {
 
 /* Responsive styles */
 @media (max-width: 768px) {
-    app-product {
+    .product-item{
         width: 45%;
     }
 }
 
 @media (max-width: 480px) {
-    app-product {
+    .product-item {
         width: 100%;
     }
 }
