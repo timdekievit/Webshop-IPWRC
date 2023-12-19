@@ -3,6 +3,7 @@ package com.hsleiden.Webapi.service;
 import com.hsleiden.Webapi.controller.AuthenticationRequest;
 import com.hsleiden.Webapi.controller.AuthenticationResponse;
 import com.hsleiden.Webapi.controller.registerRequest;
+import com.hsleiden.Webapi.controller.userUpdateRequest;
 import com.hsleiden.Webapi.model.Role;
 import com.hsleiden.Webapi.model.ShoppingCart;
 import com.hsleiden.Webapi.repository.ShoppingCartRepository;
@@ -70,4 +71,26 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
+
+    public AuthenticationResponse update(userUpdateRequest request) {
+        User existingUser = (User) userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Update the user's details
+        existingUser.setEmail(request.getEmail());
+        existingUser.setName(request.getName());
+        existingUser.setAddress(request.getAddress());
+        existingUser.setCity(request.getCity());
+        existingUser.setZipCode(request.getZipCode());
+
+        // Save the updated user's details
+        User updatedUser = userRepository.save(existingUser);
+
+        // Generate a new JWT token for the updated user
+        var jwtToken = jwtService.generateToken((UserDetails) updatedUser);
+        return AuthenticationResponse.builder()
+                .token(jwtToken)
+                .build();
+    }
+
 }

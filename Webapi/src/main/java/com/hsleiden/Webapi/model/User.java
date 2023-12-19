@@ -32,6 +32,11 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String name;
+    private String address;
+    private String city;
+    private String zipCode;
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private ShoppingCart shoppingCart;

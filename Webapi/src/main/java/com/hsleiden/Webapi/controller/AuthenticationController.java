@@ -25,4 +25,9 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<AuthenticationResponse> update(@RequestBody userUpdateRequest request) {
+        return ResponseEntity.ok(authenticationService.update(request));
+    }
+
 }
