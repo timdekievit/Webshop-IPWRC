@@ -8,13 +8,16 @@
 </head>
 
 <body>
-    <!-- Header -->
+
     <header>
         <h1>Generic Webshop</h1>
     </header>
 
-    <!-- Main content -->
     <div class="container">
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search for products..." [(ngModel)]="searchString">
+            <button (click)="searchProducts(searchString)" class="search-button">Search</button>
+        </div>
         <h2>Featured Products</h2>
         <div class="featured-products">
             <a class="product-item" *ngFor="let product of (products$ | async)">
@@ -24,7 +27,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2023 Generic Webshop. All rights reserved.</p>
     </footer>

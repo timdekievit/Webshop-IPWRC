@@ -14,5 +14,5 @@ export class ProductService {
 
   getAll = () => this.http.get<Product[]>(this.webserver + '/api/products');
   get = (id: string) => this.http.get<Product>(this.webserver + '/api/products/' + id);
-
+  search = (title: string) => this.http.get<Product[]>(`${this.webserver}/api/products/search?title=${title}`);
 }

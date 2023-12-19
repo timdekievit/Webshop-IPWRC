@@ -24,6 +24,11 @@ public class ProductController {
     public List<Product> getAllProducts() {
         return productService.getAllProductsWithImageUrl();
     }
+    
+    @GetMapping("/search")
+    public List<Product> searchProducts(@RequestParam String title) {
+        return productService.searchProducts(title);
+    }
 
     @GetMapping("/{id}")
     public Product getProductWithImageUrl(@PathVariable Long id) {

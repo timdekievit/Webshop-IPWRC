@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ProductService } from 'src/libs/api/src/lib/product/product.service';
 import { Product } from 'src/libs/entities/src/lib/product/product';
 import { ShoppingCartService } from 'src/libs/api/src/lib/shoppingCart/shoppingCart.service';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +12,37 @@ import { ShoppingCartService } from 'src/libs/api/src/lib/shoppingCart/shoppingC
 })
 export class HomeComponent implements OnInit {
   products$: Observable<Product[]> = new Observable<Product[]>();
-
+  searchString: string = '';
   randomProducts: Product[] = [];
 
-  constructor(private productService: ProductService, private shoppingCartService: ShoppingCartService) { }
+  constructor(private productService: ProductService,
+    private shoppingCartService: ShoppingCartService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.products$ = this.productService.getAll();
-    this.products$.subscribe((items) => console.log(items));
+    this.inintializeProducts();
+  }
+
+  inintializeProducts() {
+    this.route.queryParamMap.subscribe(params => {
+      const searchText = params.get('searchtext');
+
+      if (searchText) {
+        this.searchString = searchText;
+        this.products$ = this.productService.search(searchText);
+      } else {
+        this.searchString = '';
+        this.products$ = this.productService.getAll();
+      }
+    });
 
     this.products$.subscribe(items => {
       this.randomProducts = this.getRandomItems(items, 3); // Get 3 random items
     });
+  }
+
+  searchProducts(title: string) {
+    this.products$ = this.productService.search(title);
+    this.router.navigate([], { queryParams: { searchtext: title } });
   }
 
   getRandomItems(products: Product[], count: number): Product[] {

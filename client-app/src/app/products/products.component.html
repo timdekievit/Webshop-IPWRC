@@ -24,6 +24,7 @@
         <div class="product-list">
             <a class="product-item" *ngFor="let product of (products$ | async)" [routerLink]="['/item', product.id]">
                 <app-product [product]="product"></app-product>
+                <button (click)="addToCart(product)">Add to Cart</button>
             </a>
         </div>
     </div>
