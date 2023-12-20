@@ -16,6 +16,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ProductComponent } from './components/product/product.component';
 import { ManagementComponent } from './management/management.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ManagementComponent } from './management/management.component';
   ],
   imports: [
     BrowserModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,

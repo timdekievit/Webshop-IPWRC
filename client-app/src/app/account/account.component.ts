@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { JwtService } from '../services/jwt.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/libs/api/src/lib/authentication/authentication.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-account',
@@ -9,7 +10,6 @@ import { AuthenticationService } from 'src/libs/api/src/lib/authentication/authe
   styleUrls: ['./account.component.scss']
 })
 
-// TODO maak een duidelijk overzicht van de account gegevens.
 export class AccountComponent implements OnInit {
 
   // get jwt token data from local storage
@@ -18,7 +18,7 @@ export class AccountComponent implements OnInit {
 
   accountForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private jwtService: JwtService, private authenticationService: AuthenticationService) {
+  constructor(private formBuilder: FormBuilder, private jwtService: JwtService, private authenticationService: AuthenticationService, private snackBar: MatSnackBar) {
     this.accountForm = this.formBuilder.group({
       email: ['', Validators.required],
       name: ['', Validators.required],
@@ -45,6 +45,12 @@ export class AccountComponent implements OnInit {
       const accountDetails = this.accountForm.value;
       this.authenticationService.update(accountDetails).subscribe((response) => {
         console.log('response', response);
+        this.snackBar.open('Account updated successfully', 'Close', {
+          panelClass: ['custom-snackbar'],
+          verticalPosition: 'top',
+          horizontalPosition: 'end',
+          duration: 3000,
+        });
       });
     }
   }
