@@ -1,5 +1,7 @@
 package com.hsleiden.Webapi.service;
 
+import com.hsleiden.Webapi.model.User;
+import com.hsleiden.Webapi.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -7,16 +9,24 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 @Service
 public class JwtService {
+
+    private final UserRepository userRepository;
+
+    public JwtService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Value("${secret.key}")
     private String SECRET_KEY;
@@ -36,6 +46,20 @@ public class JwtService {
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        Optional<User> userOptional = userRepository.findByEmail(userDetails.getUsername());
+
+        if (!userOptional.isPresent()) {
+            throw new UsernameNotFoundException("User not found with username: " + userDetails.getUsername());
+        }
+
+         User user = userOptional.get();
+
+        // TODO potentially unsafe because of the sensitive data
+        extraClaims.put("name", user.getName());
+        extraClaims.put("address", user.getAddress());
+        extraClaims.put("city", user.getCity());
+        extraClaims.put("zipCode", user.getZipCode());
+
         return Jwts
                 .builder()
                 .setClaims(extraClaims)

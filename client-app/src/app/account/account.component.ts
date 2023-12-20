@@ -14,8 +14,7 @@ export class AccountComponent implements OnInit {
 
   // get jwt token data from local storage
   token: any;
-  email = '';
-
+  
   accountForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private jwtService: JwtService, private authenticationService: AuthenticationService, private snackBar: MatSnackBar) {
@@ -31,11 +30,13 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     this.token = localStorage.getItem('token');
       if (this.token) {
-        console.log('token', this.token);
         const decodedToken = this.jwtService.decodeJwt(this.token);
         console.log('decodedToken', decodedToken);
-        this.email = decodedToken.sub;
-        this.accountForm.patchValue({ email: this.email });
+        this.accountForm.patchValue({ email: decodedToken.sub});
+        this.accountForm.patchValue({ name: decodedToken.name });
+        this.accountForm.patchValue({ address: decodedToken.address });
+        this.accountForm.patchValue({ city: decodedToken.city });
+        this.accountForm.patchValue({ zipCode: decodedToken.zipCode });
       }
   }
 
