@@ -1,4 +1,4 @@
-package com.hsleiden.Webapi.controller;
+package com.hsleiden.Webapi.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest {
-
+public class userUpdateRequest {
         private String email;
-        private String password;
+        private String name;
+        private String address;
+        private String city;
+        private String zipCode;
 }

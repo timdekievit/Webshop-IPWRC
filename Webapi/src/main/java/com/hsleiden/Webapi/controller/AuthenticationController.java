@@ -1,5 +1,9 @@
 package com.hsleiden.Webapi.controller;
 
+import com.hsleiden.Webapi.request.AuthenticationRequest;
+import com.hsleiden.Webapi.request.registerRequest;
+import com.hsleiden.Webapi.request.userUpdateRequest;
+import com.hsleiden.Webapi.response.AuthenticationResponse;
 import com.hsleiden.Webapi.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

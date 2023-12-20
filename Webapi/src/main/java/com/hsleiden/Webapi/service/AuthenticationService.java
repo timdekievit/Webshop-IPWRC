@@ -1,15 +1,14 @@
 package com.hsleiden.Webapi.service;
 
-import com.hsleiden.Webapi.controller.AuthenticationRequest;
-import com.hsleiden.Webapi.controller.AuthenticationResponse;
-import com.hsleiden.Webapi.controller.registerRequest;
-import com.hsleiden.Webapi.controller.userUpdateRequest;
+import com.hsleiden.Webapi.request.AuthenticationRequest;
+import com.hsleiden.Webapi.response.AuthenticationResponse;
+import com.hsleiden.Webapi.request.registerRequest;
+import com.hsleiden.Webapi.request.userUpdateRequest;
 import com.hsleiden.Webapi.model.Role;
 import com.hsleiden.Webapi.model.ShoppingCart;
 import com.hsleiden.Webapi.repository.ShoppingCartRepository;
 import com.hsleiden.Webapi.repository.UserRepository;
 import com.hsleiden.Webapi.model.User;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
