@@ -34,6 +34,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFil
                         .requestMatchers("/api/shoppingCart/**").permitAll()
                         .requestMatchers("/api/giftcards/**").permitAll()
                         .requestMatchers("/api/orders/**").permitAll()
+                        .requestMatchers("/api/images/**").permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
