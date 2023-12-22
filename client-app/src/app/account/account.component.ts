@@ -3,6 +3,8 @@ import { JwtService } from '../services/jwt.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/libs/api/src/lib/authentication/authentication.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from 'src/libs/entities/src/lib/user/user';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account',
@@ -12,10 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class AccountComponent implements OnInit {
 
-  // get jwt token data from local storage
-  token: any;
-  
   accountForm: FormGroup;
+  user$: Observable<User> = new Observable<User>();
 
   constructor(private formBuilder: FormBuilder, private jwtService: JwtService, private authenticationService: AuthenticationService, private snackBar: MatSnackBar) {
     this.accountForm = this.formBuilder.group({
@@ -28,16 +28,14 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.token = localStorage.getItem('token');
-      if (this.token) {
-        const decodedToken = this.jwtService.decodeJwt(this.token);
-        console.log('decodedToken', decodedToken);
-        this.accountForm.patchValue({ email: decodedToken.sub});
-        this.accountForm.patchValue({ name: decodedToken.name });
-        this.accountForm.patchValue({ address: decodedToken.address });
-        this.accountForm.patchValue({ city: decodedToken.city });
-        this.accountForm.patchValue({ zipCode: decodedToken.zipCode });
-      }
+    this.user$ = this.authenticationService.getCurrentUser();
+    this.user$.subscribe((user) => {
+      this.accountForm.patchValue({ email: user.email });
+      this.accountForm.patchValue({ name: user.name });
+      this.accountForm.patchValue({ address: user.address });
+      this.accountForm.patchValue({ city: user.city });
+      this.accountForm.patchValue({ zipCode: user.zipCode });
+    });
   }
 
   // TODO show confirmation that the account has been updated.

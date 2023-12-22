@@ -9,6 +9,8 @@ import com.hsleiden.Webapi.model.ShoppingCart;
 import com.hsleiden.Webapi.repository.ShoppingCartRepository;
 import com.hsleiden.Webapi.repository.UserRepository;
 import com.hsleiden.Webapi.model.User;
+import com.hsleiden.Webapi.response.UserResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -90,6 +92,23 @@ public class AuthenticationService {
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    public UserResponse getCurrentUser(HttpServletRequest request) {
+        String token = request.getHeader("Authorization").substring(7);
+        String userId = jwtService.extractUsername(token);
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+        return UserResponse.builder()
+            .id(user.getId())
+            .email(user.getEmail())
+            .role(user.getRole())
+            .name(user.getName())
+            .address(user.getAddress())
+            .city(user.getCity())
+            .zipCode(user.getZipCode())
+            .build();
     }
 
 }

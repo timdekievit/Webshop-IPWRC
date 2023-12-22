@@ -4,13 +4,12 @@ import com.hsleiden.Webapi.request.AuthenticationRequest;
 import com.hsleiden.Webapi.request.registerRequest;
 import com.hsleiden.Webapi.request.userUpdateRequest;
 import com.hsleiden.Webapi.response.AuthenticationResponse;
+import com.hsleiden.Webapi.response.UserResponse;
 import com.hsleiden.Webapi.service.AuthenticationService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -32,6 +31,11 @@ public class AuthenticationController {
     @PostMapping("/update")
     public ResponseEntity<AuthenticationResponse> update(@RequestBody userUpdateRequest request) {
         return ResponseEntity.ok(authenticationService.update(request));
+    }
+
+    @GetMapping("/current-user")
+    public ResponseEntity<UserResponse> getCurrentUser(HttpServletRequest request) {
+        return ResponseEntity.ok(authenticationService.getCurrentUser(request));
     }
 
 }

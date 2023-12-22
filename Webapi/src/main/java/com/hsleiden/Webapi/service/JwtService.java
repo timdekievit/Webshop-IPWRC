@@ -46,24 +46,18 @@ public class JwtService {
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
-        Optional<User> userOptional = userRepository.findByEmail(userDetails.getUsername());
+        Optional<User> userOptional = userRepository.findById(userDetails.getUsername());
 
-        if (!userOptional.isPresent()) {
-            throw new UsernameNotFoundException("User not found with username: " + userDetails.getUsername());
+        if (userOptional.isEmpty()) {
+            throw new UsernameNotFoundException("User not found with id: " + userDetails.getUsername());
         }
 
-         User user = userOptional.get();
-
-        // TODO potentially unsafe because of the sensitive data
-        extraClaims.put("name", user.getName());
-        extraClaims.put("address", user.getAddress());
-        extraClaims.put("city", user.getCity());
-        extraClaims.put("zipCode", user.getZipCode());
+        User user = userOptional.get();
 
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+                .setSubject(user.getId())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 1000)) // 1000 days
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
@@ -71,8 +65,8 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        final String id = extractUsername(token);
+        return (id.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
     private boolean isTokenExpired(String token) {
