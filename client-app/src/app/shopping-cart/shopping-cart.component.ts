@@ -12,6 +12,7 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
 export class ShoppingCartComponent implements OnInit {
   products$: Observable<Product[]> = of([]);
   amount: number = 0;
+  quantity: number = 0;
 
   constructor(private shoppingCartService: ShoppingCartService, private router: Router) { }
   

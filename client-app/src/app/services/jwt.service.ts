@@ -31,4 +31,8 @@ export class JwtService {
     }
     return false;
   }
+
+  logout() {
+    localStorage.removeItem('token');
+  }
 }

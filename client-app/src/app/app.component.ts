@@ -25,4 +25,8 @@ export class AppComponent implements OnInit {
   isLoggedIn() {
     return this.jwtService.isLoggedIn();
   }
+
+  logout() {
+    this.jwtService.logout();
+  }
 }
