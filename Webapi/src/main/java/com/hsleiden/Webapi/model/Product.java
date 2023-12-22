@@ -15,8 +15,7 @@ import java.util.UUID;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private Long productId;
     private String title;
     private String description;
@@ -30,6 +29,13 @@ public class Product {
     @JsonIgnore
     @ToString.Exclude
     private List<ShoppingCart> shoppingCarts;
+
+    @PrePersist
+    public void generateId() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
+    }
 
     public Product(String title, String description,
                    double price, int quantity, boolean isSold, String imagePublicId, int availability) {

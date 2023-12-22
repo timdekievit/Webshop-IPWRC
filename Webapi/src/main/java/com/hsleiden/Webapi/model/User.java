@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -21,12 +22,17 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(unique = true)
     private String email;
 
+    // TODO minumum wachtwoord lengte
+    // check snyk.io
+    // geen lOng maar UUID
+    // jwt alleen id
+    // npm audit fix
+    // vergeet niet uiteindelijk uit de development mode te gaan.
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -45,6 +51,13 @@ public class User implements UserDetails {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    @PrePersist
+    public void generateId() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
     }
 
     @Override

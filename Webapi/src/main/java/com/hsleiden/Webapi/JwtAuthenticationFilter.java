@@ -59,48 +59,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
-//    private final AuthenticationManager authenticationManager;
-//
-//    public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
-//        this.authenticationManager = authenticationManager;
-//    }
-//
-//    @Override
-//    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
-//        String token = extractToken(request);
-//
-//        if (token != null && JwtTokenProvider.validateToken(token)) {
-//            Claims claims = Jwts.parser().setSigningKey("yourSecretKey").parseClaimsJws(token).getBody();
-//            String username = claims.getSubject();
-//
-//            if (username != null) {
-//                return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, null));
-//            }
-//        }
-//
-//        return null;
-//    }
-//
-//    @Override
-//    protected void successfulAuthentication(
-//            HttpServletRequest request,
-//            HttpServletResponse response,
-//            FilterChain chain,
-//            Authentication authResult) throws IOException, ServletException {
-//        SecurityContextHolder.getContext().setAuthentication(authResult);
-//        chain.doFilter(request, response);
-//    }
-//
-//    private String extractToken(HttpServletRequest request) {
-//        String bearerToken = request.getHeader("Authorization");
-//
-//        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-//            return bearerToken.substring(7);
-//        }
-//
-//        return null;
-//    }
-
-
 }

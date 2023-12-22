@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -14,8 +15,7 @@ import java.util.List;
 public class ShoppingCart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @OneToOne
     @JoinColumn(name = "user_id", unique = true)
@@ -31,6 +31,13 @@ public class ShoppingCart {
 
     public ShoppingCart(User user) {
         this.user = user;
+    }
+
+    @PrePersist
+    public void generateId() {
+        if (id == null) {
+            id = UUID.randomUUID().toString();
+        }
     }
 
     public void addProduct(Product product) {

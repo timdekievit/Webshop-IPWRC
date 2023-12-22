@@ -33,7 +33,7 @@ public class ShoppingCartService {
         User user = getAuthenticatedUser();
         ShoppingCart shoppingCart = user.getShoppingCart();
 
-        Long id = Long.parseLong(payload.get("id"));
+        String id = payload.get("id");
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found"));
 
@@ -58,7 +58,7 @@ public class ShoppingCartService {
         return (User) user;
     }
 
-    public List<Product> deleteProductFromCart(Long id) {
+    public List<Product> deleteProductFromCart(String id) {
         User user = getAuthenticatedUser();
         ShoppingCart shoppingCart = user.getShoppingCart();
 

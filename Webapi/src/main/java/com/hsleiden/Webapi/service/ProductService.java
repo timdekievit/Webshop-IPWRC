@@ -42,7 +42,7 @@ public class ProductService {
         return products;
     }
 
-    public Product getProductWithImageUrl(Long id) {
+    public Product getProductWithImageUrl(String id) {
 
         Product product = productRepository.findById(id).orElse(null);
 
