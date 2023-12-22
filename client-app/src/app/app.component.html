@@ -9,6 +9,7 @@
             <li *ngIf="!isLoggedIn()"><a [routerLink]="['/register']" class="register-link">Register</a></li>
             <li *ngIf="isLoggedIn()"><a [routerLink]="['/account']" class="account">Account Details</a></li>
             <li *ngIf="isLoggedIn()"><a (click)="logout()" class="logout-link">Logout</a></li>
+            <li><a [routerLink]="['/management']">Management</a></li>
             <li><a href="#" class="shopping-cart-link" (click)="toggleCart(); $event.preventDefault()">
                 <i class="fa fa-shopping-cart"></i>
             </a></li>

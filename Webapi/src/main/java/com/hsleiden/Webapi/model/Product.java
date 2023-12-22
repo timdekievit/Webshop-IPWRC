@@ -16,12 +16,10 @@ public class Product {
 
     @Id
     private String id;
-    private Long productId;
     private String title;
     private String description;
     private double price;
     private int quantity;
-    private boolean isSold;
     private String imagePublicId;
     private String imageSrc;
     private int availability;
@@ -38,12 +36,11 @@ public class Product {
     }
 
     public Product(String title, String description,
-                   double price, int quantity, boolean isSold, String imagePublicId, int availability) {
+                   double price, int quantity, String imagePublicId, int availability) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
-        this.isSold = isSold;
         this.imageSrc = null;
         this.availability = availability;
         this.imagePublicId = imagePublicId;

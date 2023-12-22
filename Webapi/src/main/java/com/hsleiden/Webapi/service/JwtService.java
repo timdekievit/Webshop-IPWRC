@@ -31,7 +31,7 @@ public class JwtService {
     @Value("${secret.key}")
     private String SECRET_KEY;
 
-    public String extractUsername(String token) {
+    public String extractUserId(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
@@ -65,7 +65,7 @@ public class JwtService {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String id = extractUsername(token);
+        final String id = extractUserId(token);
         return (id.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 

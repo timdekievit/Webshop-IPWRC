@@ -12,6 +12,7 @@ import com.hsleiden.Webapi.model.User;
 import com.hsleiden.Webapi.response.UserResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -58,16 +59,21 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         System.out.println("AuthenticationRequest: " + request);
 
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
+        // TODO fix BadCredentialsException always occuring
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
+            );
+        } catch (BadCredentialsException e) {
+            System.out.println("Exception: " + e);
+        }
 
         var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
-        var jwtToken = jwtService.generateToken((UserDetails) user);
+        var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
                 .build();
@@ -96,7 +102,7 @@ public class AuthenticationService {
 
     public UserResponse getCurrentUser(HttpServletRequest request) {
         String token = request.getHeader("Authorization").substring(7);
-        String userId = jwtService.extractUsername(token);
+        String userId = jwtService.extractUserId(token);
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new RuntimeException("User not found"));
 

@@ -50,9 +50,9 @@ public class ShoppingCartService {
 
     private User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
+        String id = authentication.getName();
 
-        var user = userRepository.findByEmail(email)
+        var user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         return (User) user;

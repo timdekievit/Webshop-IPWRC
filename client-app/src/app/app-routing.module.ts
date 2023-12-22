@@ -9,6 +9,8 @@ import { RegisterComponent } from './register/register.component';
 import { AccountComponent } from './account/account.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { ManagementComponent } from './management/management.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,7 +22,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'account', component: AccountComponent},
   { path: 'checkout', component: CheckoutComponent},
-  { path: 'confirmation', component: ConfirmationComponent}
+  { path: 'confirmation', component: ConfirmationComponent},
+  { path: 'management', component: ManagementComponent, canActivate: [AdminGuard] },
 ];
 
 
