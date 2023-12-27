@@ -11,6 +11,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { ManagementComponent } from './management/management.component';
 import { AdminGuard } from './guards/admin.guard';
+import { ManagementOrdersComponent } from './management/management-orders/management-orders.component';
+import { ManagementProductsComponent } from './management/management-products/management-products.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +25,16 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent},
   { path: 'checkout', component: CheckoutComponent},
   { path: 'confirmation', component: ConfirmationComponent},
-  { path: 'management', component: ManagementComponent, canActivate: [AdminGuard] },
+  { path: 'management', 
+    component: ManagementComponent, 
+    canActivate: [AdminGuard],
+    children: [
+      { path: '', redirectTo: 'orders', pathMatch: 'full' },
+      { path: 'orders', component: ManagementOrdersComponent },
+      { path: 'products', component: ManagementProductsComponent },
+    ]
+  
+  },
 ];
 
 

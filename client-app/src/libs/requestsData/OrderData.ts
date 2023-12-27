@@ -1,11 +1,9 @@
-import { Product } from "./product";
+import { Product } from "../entities/src/lib/product/product";
 
-export interface Order {
-    id: string;
+export interface OrderData {
     products: Product[];
     name: string;
     address: string;
     city: string;
     zipCode: string;
-
   }

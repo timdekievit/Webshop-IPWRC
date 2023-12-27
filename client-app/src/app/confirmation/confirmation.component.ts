@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Order } from 'src/libs/entities/src/lib/product/order';
 import { Product } from 'src/libs/entities/src/lib/product/product';
 import { OrderHandlingService } from '../services/orderHandling.service';
+import { OrderData } from 'src/libs/requestsData/OrderData';
 
 @Component({
   selector: 'app-confirmation',
@@ -10,7 +11,7 @@ import { OrderHandlingService } from '../services/orderHandling.service';
   styleUrls: ['./confirmation.component.scss']
 })
 export class ConfirmationComponent implements OnInit {
-  order$: Observable<Order | null> = new Observable<null>();
+  order$: Observable<OrderData | null> = new Observable<null>();
 
   constructor(private orderHandlingService: OrderHandlingService) { }
   

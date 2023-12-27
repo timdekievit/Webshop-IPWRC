@@ -18,6 +18,8 @@ import { ProductComponent } from './components/product/product.component';
 import { ManagementComponent } from './management/management.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ManagementOrdersComponent } from './management/management-orders/management-orders.component';
+import { ManagementProductsComponent } from './management/management-products/management-products.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ConfirmationComponent,
     ProductComponent,
     ManagementComponent,
+    ManagementOrdersComponent,
+    ManagementProductsComponent,
   ],
   imports: [
     BrowserModule,

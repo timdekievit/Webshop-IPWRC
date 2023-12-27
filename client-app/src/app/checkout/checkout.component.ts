@@ -10,6 +10,7 @@ import { Order } from 'src/libs/entities/src/lib/product/order';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderHandlingService } from '../services/orderHandling.service';
+import { OrderData } from 'src/libs/requestsData/OrderData';
 
 @Component({
   selector: 'app-checkout',
@@ -22,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   products$: Observable<Product[]> = new Observable<Product[]>();
   amount: number = 0;
   checkoutForm: FormGroup;
-  order: Order | undefined;
+  order: OrderData | undefined;
 
   constructor(private giftCardService: GiftCardService, 
     private shoppingCartService: ShoppingCartService, 
@@ -60,7 +61,7 @@ export class CheckoutComponent implements OnInit {
     this.products$ = this.shoppingCartService.get();
   }
 
-  PlaceOrder(order: Order) {
+  PlaceOrder(order: OrderData) {
     this.orderService.create(order).subscribe(
     (response) => {
       // Navigate to the confirmation page here

@@ -1,1 +1,12 @@
-<p>management works!</p>
+<div class="container">
+    <header>
+        <h1>Management Dashboard</h1>
+    </header>
+
+    <nav>
+        <a [routerLink]="['/management/orders']">Orders</a>
+        <a [routerLink]="['/management/products']">Add Product</a>
+    </nav>
+    <router-outlet></router-outlet>
+
+</div>

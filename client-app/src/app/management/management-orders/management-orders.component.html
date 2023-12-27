@@ -1,0 +1,29 @@
+<div class="dashboard-container">
+    <h2>Order List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Products</th>
+                <th>Total Price</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>ZipCode</th>
+
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders$ | async">
+                <td>{{order.id}}</td>
+                <td>{{getProductsTitles(order)}}</td>
+                <td>{{getTotalPrice(order)}}</td>
+                <td>{{order.name}}</td>
+                <td>{{order.address}}</td>
+                <td>{{order.city}}</td>
+                <td>{{order.zipCode}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
