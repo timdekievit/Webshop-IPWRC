@@ -6,6 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CartService {
 
+    // TODO a user that is not loggedin should be able to add products to the cart
+
     private isCartOpenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     public toggleCart() {

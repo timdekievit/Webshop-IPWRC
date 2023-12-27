@@ -1,31 +1,20 @@
+<div class="product-form-container">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <label for="title">Title:</label>
+        <input type="text" id="title" formControlName="title" required>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Management</title>
-    <style>
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description" rows="4" required></textarea>
 
-    </style>
-</head>
+        <label for="price">Price:</label>
+        <input type="number" id="price" formControlName="price" step="0.01" required>
 
-    <div class="product-form-container">
-        <form>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" required>
+        <label for="availability">Availability:</label>
+        <input type="number" id="availability" formControlName="availability" required>
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4" required></textarea>
+        <label for="image">Image:</label>
+        <input type="file" id="image" (change)="onFileSelect($event)" accept="image/*" required>
 
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" required>
-
-            <label for="availability">Availability:</label>
-            <input type="number" id="availability" name="availability" required>
-
-            <label for="image">Image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-
-            <button type="submit">Add Product</button>
-        </form>
-    </div>
-
+        <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+    </form>
+</div>

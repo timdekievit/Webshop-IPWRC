@@ -3,7 +3,9 @@ package com.hsleiden.Webapi.service;
 import com.cloudinary.Cloudinary;
 import com.hsleiden.Webapi.model.Product;
 import com.hsleiden.Webapi.repository.ProductRepository;
+import com.hsleiden.Webapi.request.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -59,6 +61,12 @@ public class ProductService {
 
     public List<Product> searchProducts(String title) {
         return productRepository.findByTitleContainsIgnoreCase(title);
+    }
+
+    public ProductRequest createProduct(ProductRequest request) {
+        System.out.println("Product request: " + request.getImage());
+
+        return request;
     }
 }
 

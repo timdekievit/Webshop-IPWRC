@@ -1,6 +1,7 @@
 package com.hsleiden.Webapi.controller;
 
 import com.hsleiden.Webapi.model.Product;
+import com.hsleiden.Webapi.request.ProductRequest;
 import com.hsleiden.Webapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,12 @@ public class ProductController {
     @Autowired
     public ProductController(ProductService productService) {
         this.productService = productService;
+    }
+
+    @PostMapping()
+    // TODO: Add authentication
+    public ProductRequest createProduct(@RequestBody ProductRequest request) {
+        return productService.createProduct(request);
     }
 
     @GetMapping

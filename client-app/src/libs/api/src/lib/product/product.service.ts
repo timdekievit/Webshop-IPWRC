@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/libs/entities/src/lib/product/product';
 import { HttpClient} from '@angular/common/http';
+import { ProductData } from 'src/libs/requestsData/ProductData';
 // import {AssignmentPortal } from '@funle/entities';
 
 @Injectable({
@@ -15,5 +16,5 @@ export class ProductService {
   getAll = () => this.http.get<Product[]>(this.webserver + '/api/products');
   get = (id: string) => this.http.get<Product>(this.webserver + '/api/products/' + id);
   search = (title: string) => this.http.get<Product[]>(`${this.webserver}/api/products/search?title=${title}`);
-  create = (product: Product) => this.http.post<Product>(this.webserver + '/api/products', product);
+  create = (product: ProductData) => this.http.post<ProductData>(this.webserver + '/api/products', product);
 }
