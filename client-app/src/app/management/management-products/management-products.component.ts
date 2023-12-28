@@ -34,9 +34,6 @@ export class ManagementProductsComponent implements OnInit {
         return;
       }
 
-      console.log(productData);
-      console.log(this.selectedFile);
-
       const formData = new FormData();
       formData.append('price', productData.price.toString());
       formData.append('availability', productData.availability.toString());

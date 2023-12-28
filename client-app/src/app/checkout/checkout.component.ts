@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderHandlingService } from '../services/orderHandling.service';
 import { OrderData } from 'src/libs/requestsData/OrderData';
+import { JwtService } from '../services/jwt.service';
+import { AuthenticationService } from 'src/libs/api/src/lib/authentication/authentication.service';
 
 @Component({
   selector: 'app-checkout',
@@ -30,6 +32,8 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService, 
     private orderService: OrderService,
     private orderHandlingService: OrderHandlingService,
+    private jwtService: JwtService,
+    private authenticationService: AuthenticationService,
     private fb: FormBuilder, 
     private router: Router) {
       this.checkoutForm = this.fb.group({
@@ -50,11 +54,26 @@ export class CheckoutComponent implements OnInit {
         this.amount += product.price;
       });
     });
+
+    this.setFormInformationIfUserIsLoggedIn();
+
   }
 
-  getGiftCardAmount(id: string) {
-    this.giftCard$ = this.giftCardService.get(id);
-  }
+  setFormInformationIfUserIsLoggedIn() {
+      if (this.jwtService.isLoggedIn()) {
+        this.authenticationService.getCurrentUser().subscribe((user) => {
+          this.checkoutForm.controls['name'].setValue(user.name);
+          this.checkoutForm.controls['address'].setValue(user.address);
+          this.checkoutForm.controls['city'].setValue(user.city);
+          this.checkoutForm.controls['zipCode'].setValue(user.zipCode);
+        });
+      }
+
+    }
+
+    getGiftCardAmount(id: string) {
+      this.giftCard$ = this.giftCardService.get(id);
+    }
 
   removeItemFromCart(product: Product) {
     this.shoppingCartService.del(product).subscribe()

@@ -1,4 +1,3 @@
-
 <div class="container">
     <div class="checkout-container">
         <h2>Checkout</h2>
@@ -32,24 +31,26 @@
 
     <div class="cart-container">
         <h2>Your Shopping Cart</h2>
-        <div *ngIf="(products$ | async)!.length === 0" class="empty-cart">
+        <div *ngIf="(products$ | async)?.length === 0" class="empty-cart">
             Your cart is empty.
         </div>
-        <div *ngIf="((products$ | async)!.length > 0)" class="cart-items">
-            <div *ngFor="let item of (products$ | async)" class="cart-item">
-                <div class="item-details">
-                    <img [src]="item.imageSrc" alt="Product Image">
-                    <div class="item-info">
-                        <h3>{{ item.title }}</h3>
-                        <p>Price: ${{ item.price }}</p>
-                        <p>Quantity: {{ item.quantity }}</p>
+        <ng-container *ngIf="products$ | async as products">
+            <div *ngIf="products.length > 0" class="cart-items">
+                <div *ngFor="let item of (products$ | async)" class="cart-item">
+                    <div class="item-details">
+                        <img [src]="item.imageSrc" alt="Product Image">
+                        <div class="item-info">
+                            <h3>{{ item.title }}</h3>
+                            <p>Price: {{ item.price | currency:'EUR' }}</p>
+                            <p>Quantity: {{ item.quantity }}</p>
+                        </div>
                     </div>
+                    <button (click)="removeItemFromCart(item)">Remove</button>
                 </div>
-                <button (click)="removeItemFromCart(item)">Remove</button>
+                <div class="cart-total">
+                    <h3>Total: {{ getCartTotal() | currency:'EUR'}}</h3>
+                </div>
             </div>
-            <div class="cart-total">
-                <h3>Total: ${{ getCartTotal()}}</h3>
-            </div>
-        </div>
+        </ng-container>
     </div>
 </div>

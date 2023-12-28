@@ -1,5 +1,4 @@
  /* Reset some default styles */
- body,
  h1,
  h2,
  h3,
@@ -11,9 +10,6 @@
      list-style: none;
  }
 
- body {
-     font-family: Arial, sans-serif;
- }
 
  /* Header styles */
  header {
@@ -30,6 +26,7 @@
 
  /* Main content styles */
  .container {
+     font-family: Arial, sans-serif;
      max-width: 1200px;
      margin: 0 auto;
      padding: 20px;
@@ -110,6 +107,7 @@
 
  .search-bar {
      margin-top: 20px;
+     margin-bottom: 20px;
      text-align: center;
  }
 

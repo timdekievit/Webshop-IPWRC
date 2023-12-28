@@ -6,7 +6,7 @@
         <div class="product-info">
             <h2>{{product.title}}</h2>
             <p>{{product.description}}</p>
-            <p>Price: ${{product.price}}</p>
+            <p>Price: {{product.price | currency:'EUR'}}</p>
             <p>In stock: {{product.availability}}</p>
             <button (click)="addToCart(product)">Add to Cart</button>
         </div>

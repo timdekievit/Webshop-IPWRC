@@ -1,35 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+<header>
+    <h1>WWWinkel</h1>
+</header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WWWinkel</title>
-</head>
-
-<body>
-
-    <header>
-        <h1>WWWinkel</h1>
-    </header>
-
-    <div class="container">
-        <div class="search-bar">
-            <input type="text" class="search-input" placeholder="Search for products..." [(ngModel)]="searchString" (keydown.enter)="searchProducts(searchString)">
-            <button (click)="searchProducts(searchString)" class="search-button">Search</button>
-        </div>
-        <h2>Featured Products</h2>
-        <div class="featured-products">
-            <a class="product-item" *ngFor="let product of (products$ | async)">
-                <app-product [product]="product" [routerLink]="['/item', product.id]"></app-product>
-                <button (click)="addToCart(product)">Add to Cart</button>
-            </a>
-        </div>
+<div class="container">
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="Search for products..." [(ngModel)]="searchString"
+            (keydown.enter)="searchProducts(searchString)">
+        <button (click)="searchProducts(searchString)" class="search-button">Search</button>
     </div>
+    <h2>Featured Products</h2>
+    <div class="featured-products">
+        <a class="product-item" *ngFor="let product of (products$ | async)">
+            <app-product [product]="product" [routerLink]="['/item', product.id]"></app-product>
+            <button (click)="addToCart(product)">Add to Cart</button>
+        </a>
+    </div>
+</div>
 
-    <footer>
-        <p>&copy; 2024 WWWinkel. All rights reserved.</p>
-    </footer>
-</body>
-
-</html>
+<footer>
+    <p>&copy; 2024 WWWinkel. All rights reserved.</p>
+</footer>
