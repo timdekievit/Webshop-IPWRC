@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from 'src/libs/entities/src/lib/product/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtService } from 'src/app/services/jwt.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class ShoppingCartService {
   webserver = "http://localhost:8080";
 
 
-  constructor(private http: HttpClient, private jwtService: JwtService) {}
+  constructor(private http: HttpClient, private jwtService: JwtService) { }
 
   private getHeaders = () => {
     const authToken = this.jwtService.getToken();
@@ -25,11 +26,21 @@ export class ShoppingCartService {
 
   add = (product: Product) => {
     const headers = this.getHeaders();
-    return this.http.post<any>(this.webserver + '/api/shoppingCart/addProduct', {"id": product.id}, { headers });
+    return this.http.post<any>(this.webserver + '/api/shoppingCart/addProduct', { "id": product.id }, { headers });
   }
 
   del = (product: Product) => {
     const headers = this.getHeaders();
     return this.http.delete<any>(`${this.webserver}/api/shoppingCart/deleteProduct/${product.id}`, { headers });
+  }
+
+  updateQuantity(product: Product, quantity: number): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.put<any>(`${this.webserver}/api/shoppingCart/updateQuantity`,
+      {
+        id: product.id,
+        quantity: quantity
+      },
+      { headers });
   }
 }

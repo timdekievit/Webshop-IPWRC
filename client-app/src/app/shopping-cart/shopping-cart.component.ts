@@ -15,28 +15,48 @@ export class ShoppingCartComponent implements OnInit {
   quantity: number = 0;
 
   constructor(private shoppingCartService: ShoppingCartService, private router: Router) { }
-  
+
   ngOnInit(): void {
     this.shoppingCartService.get().subscribe(
       (data: any) => {
         console.log(data);
       });
-      this.products$ = this.shoppingCartService.get().pipe(startWith([]));
-      this.products$.subscribe((products) => {
-        this.amount = 0;
-        products.forEach((product) => {
-          this.amount += product.price;
-        });
+    this.products$ = this.shoppingCartService.get().pipe(startWith([]));
+    this.calculateTotal();
+  }
+
+  decreaseQuantity(product: Product) {
+    if (product.quantity > 1) {
+      product.quantity--;
+      this.shoppingCartService.updateQuantity(product, product.quantity).subscribe(() => {
+        this.calculateTotal();
       });
+    }
+  }
+
+  increaseQuantity(product: Product) {
+    product.quantity++;
+    this.shoppingCartService.updateQuantity(product, product.quantity).subscribe(() => {
+      this.calculateTotal();
+    });
+  }
+
+  calculateTotal() {
+    this.amount = 0;
+    this.products$.subscribe((products) => {
+      products.forEach((product) => {
+        this.amount += product.price * product.quantity;
+      });
+    });
   }
 
   removeItemFromCart(product: Product) {
-      this.shoppingCartService.del(product).subscribe()
-    }
+    this.shoppingCartService.del(product).subscribe()
+  }
 
   getCartTotal() {
     return this.amount;
-  }  
+  }
 
   GoToCheckout() {
     this.router.navigate(['/checkout']);

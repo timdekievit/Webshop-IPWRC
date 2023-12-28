@@ -78,5 +78,14 @@ public class ProductService {
         return productRepository.save(product);
 
     }
+
+    // TODO add quantity to the shoppingCart products table
+    // or just remove all this crap to save time.
+    public Product updateQuantity(String id, Integer quantity) throws Exception {
+    Product product = productRepository.findById(id)
+        .orElseThrow(() -> new Exception("Product not found with id " + id));
+    product.setQuantity(quantity);
+    return productRepository.save(product);
+}
 }
 

@@ -71,5 +71,9 @@ public Product createProduct(
     public Product getProductWithImageUrl(@PathVariable String id) {
         return productService.getProductWithImageUrl(id);
     }
+
+    @PutMapping("/updateQuantity") public Product updateQuantity(@RequestParam String id, @RequestParam int quantity) {
+        return productService.updateQuantity(id, quantity);
+    }
 }
 
