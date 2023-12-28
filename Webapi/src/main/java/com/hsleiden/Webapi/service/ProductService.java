@@ -7,6 +7,8 @@ import com.hsleiden.Webapi.request.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -63,10 +65,18 @@ public class ProductService {
         return productRepository.findByTitleContainsIgnoreCase(title);
     }
 
-    public ProductRequest createProduct(ProductRequest request) {
-        System.out.println("Product request: " + request.getImage());
+    public Product createProduct(ProductRequest request) throws IOException {
+        // Create product with builder
+        Product product = Product.builder()
+                .title(request.getTitle())
+                .description(request.getDescription())
+                .price(request.getPrice())
+                .availability(request.getAvailability())
+                .imagePublicId(request.getImagePublicId())
+                .build();
 
-        return request;
+        return productRepository.save(product);
+
     }
 }
 

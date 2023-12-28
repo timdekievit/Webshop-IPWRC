@@ -3,5 +3,5 @@ export interface ProductData {
     description: string;
     price: number;
     availability: number;
-    image: Uint8Array;
+    image: string;
 }

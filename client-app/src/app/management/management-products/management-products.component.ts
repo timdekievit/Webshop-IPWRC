@@ -26,7 +26,7 @@ export class ManagementProductsComponent implements OnInit {
     // Initialization logic here
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.productForm.valid) {
       const productData: ProductData = this.productForm.value;
 
@@ -34,32 +34,30 @@ export class ManagementProductsComponent implements OnInit {
         return;
       }
 
-      try {
-        const fileByteArray: Uint8Array = await this.convertFileToByteArray(this.selectedFile);
-        console.log(fileByteArray);
+      console.log(productData);
+      console.log(this.selectedFile);
 
-        this.product = {
-          price: productData.price,
-          availability: productData.availability,
-          description: productData.description,
-          title: productData.title,
-          image: fileByteArray
-        };
+      const formData = new FormData();
+      formData.append('price', productData.price.toString());
+      formData.append('availability', productData.availability.toString());
+      formData.append('description', productData.description);
+      formData.append('title', productData.title);
+      formData.append('image', this.selectedFile);
 
-        console.log(this.product);
-
-        // Send the product data to the backend
-        this.productService.create(this.product).subscribe(
-          () => {
-            // Handle success if needed
-          },
-          (error) => {
-            console.error('Error creating product:', error);
-          }
-        );
-      } catch (error) {
-        console.error('Error converting file to byte array:', error);
+      console.log('FormData values:');
+      for (let value of formData.getAll('image')) {
+        console.log(value);
       }
+
+      // Send the product data to the backend
+      this.productService.create(formData).subscribe(
+        () => {
+          // Handle success if needed
+        },
+        (error) => {
+          console.error('Error creating product:', error);
+        }
+      );
     }
   }
 
@@ -68,21 +66,66 @@ export class ManagementProductsComponent implements OnInit {
     console.log(this.selectedFile);
   }
 
-  private convertFileToByteArray(file: File): Promise<Uint8Array> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
 
-      reader.onload = (e) => {
-        const fileContent: ArrayBuffer = (e.target as any).result;
-        const byteArray = new Uint8Array(fileContent);
-        resolve(byteArray);
-      };
 
-      reader.onerror = (error) => {
-        reject(error);
-      };
+  //   async onSubmit() {
+  //     if (this.productForm.valid) {
+  //       const productData: ProductData = this.productForm.value;
 
-      reader.readAsArrayBuffer(file);
-    });
-  }
+  //       if (!this.selectedFile) {
+  //         return;
+  //       }
+
+  //       try {
+  //         const fileByteArray: Uint8Array = await this.convertFileToByteArray(this.selectedFile);
+  //         let numberArray = Array.from(fileByteArray);
+  //         let base64String = btoa(String.fromCharCode.apply(null, numberArray));
+  //         console.log(fileByteArray);
+  //         console.log(numberArray);
+  //         console.log(base64String);
+
+  //         this.product = {
+  //           price: productData.price,
+  //           availability: productData.availability,
+  //           description: productData.description,
+  //           title: productData.title,
+  //           image: base64String
+  //         };
+
+  //         console.log(this.product);
+
+  //         // Send the product data to the backend
+  //         this.productService.create(this.product).subscribe(
+  //           () => {
+  //             // Handle success if needed
+  //           },
+  //           (error) => {
+  //             console.error('Error creating product:', error);
+  //           }
+  //         );
+  //       } catch (error) {
+  //         console.error('Error converting file to byte array:', error);
+  //       }
+  //     }
+  //   }
+
+
+
+  //   private convertFileToByteArray(file: File): Promise<Uint8Array> {
+  //     return new Promise((resolve, reject) => {
+  //       const reader = new FileReader();
+
+  //       reader.onload = (e) => {
+  //         const fileContent: ArrayBuffer = (e.target as any).result;
+  //         const byteArray = new Uint8Array(fileContent);
+  //         resolve(byteArray);
+  //       };
+
+  //       reader.onerror = (error) => {
+  //         reject(error);
+  //       };
+
+  //       reader.readAsArrayBuffer(file);
+  //     });
+  //   }
 }
