@@ -2,6 +2,7 @@ package com.hsleiden.Webapi.controller;
 
 import com.hsleiden.Webapi.model.Product;
 import com.hsleiden.Webapi.request.ProductRequest;
+import com.hsleiden.Webapi.request.UpdateProductQuantityRequest;
 import com.hsleiden.Webapi.service.ImageService;
 import com.hsleiden.Webapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +73,8 @@ public Product createProduct(
         return productService.getProductWithImageUrl(id);
     }
 
-    @PutMapping("/updateQuantity") public Product updateQuantity(@RequestParam String id, @RequestParam int quantity) {
-        return productService.updateQuantity(id, quantity);
+    @PutMapping("/updateQuantity") public Product updateQuantity(@RequestBody UpdateProductQuantityRequest request) {
+        return productService.updateQuantity(request);
     }
 }
 

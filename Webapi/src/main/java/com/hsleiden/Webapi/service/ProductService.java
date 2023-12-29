@@ -4,6 +4,7 @@ import com.cloudinary.Cloudinary;
 import com.hsleiden.Webapi.model.Product;
 import com.hsleiden.Webapi.repository.ProductRepository;
 import com.hsleiden.Webapi.request.ProductRequest;
+import com.hsleiden.Webapi.request.UpdateProductQuantityRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -79,13 +80,17 @@ public class ProductService {
 
     }
 
-    // TODO add quantity to the shoppingCart products table
-    // or just remove all this crap to save time.
-    public Product updateQuantity(String id, Integer quantity) throws Exception {
-    Product product = productRepository.findById(id)
-        .orElseThrow(() -> new Exception("Product not found with id " + id));
-    product.setQuantity(quantity);
-    return productRepository.save(product);
-}
+    public Product updateQuantity(UpdateProductQuantityRequest request)  {
+
+        try {
+            Product product = productRepository.findById(request.getId())
+            .orElseThrow(() -> new Exception("Product not found with id " + request.getId()));
+            product.setQuantity(request.getQuantity());
+            return productRepository.save(product);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }
 
