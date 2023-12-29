@@ -11,7 +11,7 @@
         <h2>Your Products</h2>
         <ul>
             <li *ngFor="let product of order.products">
-                {{ product.title }} - {{ product.price }}
+                {{product.quantity }}x {{ product.title }} - {{ product.price * product.quantity | currency:'EUR'}}
             </li>
         </ul>
     </div>

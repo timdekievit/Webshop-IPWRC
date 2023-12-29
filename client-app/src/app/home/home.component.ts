@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductService } from 'src/libs/api/src/lib/product/product.service';
 import { Product } from 'src/libs/entities/src/lib/product/product';
-import { ShoppingCartService } from 'src/libs/api/src/lib/shoppingCart/shoppingCart.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   randomProducts: Product[] = [];
 
   constructor(private productService: ProductService,
-    private shoppingCartService: ShoppingCartService, private router: Router, private route: ActivatedRoute) { }
+    private cartService: CartService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.inintializeProducts();
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit {
 
   addToCart(product: Product) {
     console.log('add to cart');
-    this.shoppingCartService.add(product).subscribe((res) => console.log(res));
+    this.cartService.addProductToCart(product);
   }
 
 }

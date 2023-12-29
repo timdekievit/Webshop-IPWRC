@@ -14,13 +14,13 @@
             <div class="input-group">
                 <input type="text" formControlName="zipCode" placeholder="ZIP Code" name="zipCode" required>
             </div>
-            <div class="gift-card-group">
+            <!-- <div class="gift-card-group">
                 <h3>Use giftcard</h3>
                 <p>Do you have a giftcard? Enter the code below to use it on this purchase.</p>
                 <input type="text" placeholder="Enter giftcard code" #giftcardInput>
                 <button type="button" (click)="getGiftCardAmount(giftcardInput.value)">Use giftcard</button>
                 <p *ngIf="(giftCard$ | async) as giftCard">Your giftcard is worth ${{giftCard.amount}}</p>
-            </div>
+            </div> -->
             <div class="input-group">
                 <button type="submit">Place Order</button>
             </div>
@@ -28,8 +28,9 @@
 
 
     </div>
-
-    <div class="cart-container">
+    <app-shopping-cart [showCheckoutButton]="false"></app-shopping-cart>
+    
+    <!-- <div class="cart-container">
         <h2>Your Shopping Cart</h2>
         <div *ngIf="(products$ | async)?.length === 0" class="empty-cart">
             Your cart is empty.
@@ -52,5 +53,5 @@
                 </div>
             </div>
         </ng-container>
-    </div>
+    </div> -->
 </div>

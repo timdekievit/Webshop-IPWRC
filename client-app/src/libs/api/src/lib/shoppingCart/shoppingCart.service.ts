@@ -3,6 +3,7 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtService } from 'src/app/services/jwt.service';
 import { Observable } from 'rxjs';
+import { CartService } from 'src/app/services/cart.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class ShoppingCartService {
   }
 
   get = () => {
+
     const headers = this.getHeaders();
     return this.http.get<Product[]>(this.webserver + '/api/shoppingCart', { headers });
   }
@@ -36,7 +38,7 @@ export class ShoppingCartService {
 
   updateQuantity(product: Product, quantity: number): Observable<any> {
     const headers = this.getHeaders();
-    return this.http.put<any>(`${this.webserver}/api/shoppingCart/updateQuantity`,
+    return this.http.put<any>(`${this.webserver}/api/products/updateQuantity`,
       {
         id: product.id,
         quantity: quantity

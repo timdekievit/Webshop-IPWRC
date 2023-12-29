@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GiftCardService } from 'src/libs/api/src/lib/giftCard/giftcard.service';
-import { ShoppingCartService } from 'src/libs/api/src/lib/shoppingCart/shoppingCart.service';
 import { GiftCard } from 'src/libs/entities/src/lib/product/giftcard';
 import { Product } from 'src/libs/entities/src/lib/product/product';
 import { CartService } from '../services/cart.service';
 import { OrderService } from 'src/libs/api/src/lib/order/order.service';
-import { Order } from 'src/libs/entities/src/lib/product/order';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderHandlingService } from '../services/orderHandling.service';
@@ -28,7 +26,6 @@ export class CheckoutComponent implements OnInit {
   order: OrderData | undefined;
 
   constructor(private giftCardService: GiftCardService, 
-    private shoppingCartService: ShoppingCartService, 
     private cartService: CartService, 
     private orderService: OrderService,
     private orderHandlingService: OrderHandlingService,
@@ -46,7 +43,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartService.setCartClosed();
-    this.products$ = this.shoppingCartService.get();
+    this.products$ = this.cartService.getcart();
 
     this.products$.subscribe((products) => {
       this.amount = 0;
@@ -74,11 +71,6 @@ export class CheckoutComponent implements OnInit {
     getGiftCardAmount(id: string) {
       this.giftCard$ = this.giftCardService.get(id);
     }
-
-  removeItemFromCart(product: Product) {
-    this.shoppingCartService.del(product).subscribe()
-    this.products$ = this.shoppingCartService.get();
-  }
 
   PlaceOrder(order: OrderData) {
     this.orderService.create(order).subscribe(

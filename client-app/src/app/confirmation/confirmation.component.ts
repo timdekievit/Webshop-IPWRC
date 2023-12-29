@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Order } from 'src/libs/entities/src/lib/product/order';
-import { Product } from 'src/libs/entities/src/lib/product/product';
 import { OrderHandlingService } from '../services/orderHandling.service';
 import { OrderData } from 'src/libs/requestsData/OrderData';
 
