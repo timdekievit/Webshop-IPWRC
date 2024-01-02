@@ -18,7 +18,7 @@
             <tr *ngFor="let order of orders$ | async">
                 <td>{{order.id}}</td>
                 <td>{{getProductsTitles(order)}}</td>
-                <td>{{getTotalPrice(order)}}</td>
+                <td>{{getTotalPrice(order) | currency: 'EUR'}}</td>
                 <td>{{order.name}}</td>
                 <td>{{order.address}}</td>
                 <td>{{order.city}}</td>

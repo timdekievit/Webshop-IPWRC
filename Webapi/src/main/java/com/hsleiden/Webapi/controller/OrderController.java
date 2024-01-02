@@ -3,6 +3,7 @@ package com.hsleiden.Webapi.controller;
 import com.hsleiden.Webapi.model.Order;
 import com.hsleiden.Webapi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class OrderController {
     }
 
     // TODO only admin should be able to access this endpoint
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
