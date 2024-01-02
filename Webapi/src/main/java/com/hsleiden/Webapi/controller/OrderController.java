@@ -19,13 +19,12 @@ public class OrderController {
     }
 
     // TODO only admin should be able to access this endpoint
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping
+    @GetMapping("/all")
     public List<Order> getAllOrders() {
         return orderService.getAllOrders();
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Order createOrder(@RequestBody Order order) {
         return orderService.createOrder(order);
     }

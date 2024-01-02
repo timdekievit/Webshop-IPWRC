@@ -3,6 +3,7 @@ package com.hsleiden.Webapi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -33,7 +34,8 @@ public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFil
                         .requestMatchers("/api/products/**").permitAll()
                         .requestMatchers("/api/shoppingCart/**").permitAll()
                         .requestMatchers("/api/giftcards/**").permitAll()
-                        .requestMatchers("/api/orders/**").permitAll()
+                        .requestMatchers("/api/orders/create").permitAll()
+                        .requestMatchers("/api/orders/all").hasRole("ADMIN")
                         .requestMatchers("/api/images/**").permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()

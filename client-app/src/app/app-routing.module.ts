@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'confirmation', component: ConfirmationComponent},
   { path: 'management', 
     component: ManagementComponent, 
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard],
     children: [
       { path: '', redirectTo: 'orders', pathMatch: 'full' },
       { path: 'orders', component: ManagementOrdersComponent },

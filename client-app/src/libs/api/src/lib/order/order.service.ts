@@ -12,6 +12,6 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  getAll = () => this.http.get<Order[]>(this.webserver + '/api/orders');
-  create = (order: OrderData) => this.http.post<Order>(this.webserver + '/api/orders', order);
+  getAll = () => this.http.get<Order[]>(this.webserver + '/api/orders/all');
+  create = (order: OrderData) => this.http.post<Order>(this.webserver + '/api/orders/create', order);
 }
