@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ShoppingCartService } from 'src/libs/api/src/lib/shoppingCart/shoppingCart.service';
 import { Product } from 'src/libs/entities/src/lib/product/product';
+import { JwtService } from './jwt.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CartService {
-
-    // TODO a user that is not loggedin should be able to add products to the cart
 
     private isCartOpenSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -18,7 +17,7 @@ export class CartService {
 
     totalCartPrice: number = 0;
 
-    constructor(private shoppingCartService: ShoppingCartService) { }
+    constructor(private shoppingCartService: ShoppingCartService, private jwtService: JwtService) { }
 
     public toggleCart() {
         this.isCartOpenSubject.next(!this.isCartOpenSubject.getValue());
@@ -34,50 +33,71 @@ export class CartService {
     }
 
     public getcart() {
-        this.shoppingCartService.get().subscribe(
-            (response) => {
-                this.cartSubject.next(response);
-                this.calculateTotalPrice();
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
-        return this.cartSubject.asObservable();
-    }
-
-    public addProductToCart(product: Product) {
-        const currentCart = this.cartSubject.getValue();
-
-        if (!currentCart.some(p => p.id === product.id)) {
-            this.shoppingCartService.add(product).subscribe(
+        if (this.jwtService.isLoggedIn()) {
+            this.shoppingCartService.get().subscribe(
                 (response) => {
-                    this.cartSubject.next([...this.cartSubject.getValue(), product]);
+                    this.cartSubject.next(response);
                     this.calculateTotalPrice();
                 },
                 (error) => {
                     console.log(error);
                 }
             );
+            return this.cartSubject.asObservable();
+        } else {
+            return this.cartSubject.asObservable();
+        }
+
+    }
+
+    public addProductToCart(product: Product) {
+        const currentCart = this.cartSubject.getValue();
+
+        if (!currentCart.some(p => p.id === product.id)) {
+            if (this.jwtService.isLoggedIn()) {
+                this.shoppingCartService.add(product).subscribe(
+                    (response) => {
+                        this.cartSubject.next([...currentCart, product]);
+                        this.calculateTotalPrice();
+                    },
+                    (error) => {
+                        console.log(error);
+                    }
+                );
+            } else {
+                this.cartSubject.next([...currentCart, product]);
+                this.calculateTotalPrice();
+            }
         }
     }
 
     public removeProductFromCart(product: Product) {
-        this.shoppingCartService.del(product).subscribe(
-            (response) => {
-                this.cartSubject.next(this.cartSubject.getValue().filter((p) => p.id !== product.id));
-                this.calculateTotalPrice();
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
+        if (this.jwtService.isLoggedIn()) {
+            this.shoppingCartService.del(product).subscribe(
+                (response) => {
+                    this.cartSubject.next(this.cartSubject.getValue().filter((p) => p.id !== product.id));
+                    this.calculateTotalPrice();
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        } else {
+            this.cartSubject.next(this.cartSubject.getValue().filter((p) => p.id !== product.id));
+            this.calculateTotalPrice();
+        }
+        
     }
 
     public setCart(cart: Observable<Product[]>) {
         cart.subscribe((products) => {
             this.cartSubject.next(products);
         });
+        this.calculateTotalPrice();
+    }
+
+    public emptyCart() {
+        this.cartSubject.next([]);
         this.calculateTotalPrice();
     }
 
@@ -94,21 +114,32 @@ export class CartService {
     }
 
     public updateQuantity(product: Product, quantity: number) {
-        this.shoppingCartService.updateQuantity(product, quantity).subscribe(
-            (response) => {
-                this.cartSubject.next(this.cartSubject.getValue().map((p) => {
-                    if (p.id === product.id) {
-                        p.quantity = quantity;
-                    }
-                    return p;
-                }));
-                this.calculateTotalPrice();
+        if (this.jwtService.isLoggedIn()) {
+            this.shoppingCartService.updateQuantity(product, quantity).subscribe(
+                (response) => {
+                    this.cartSubject.next(this.cartSubject.getValue().map((p) => {
+                        if (p.id === product.id) {
+                            p.quantity = quantity;
+                        }
+                        return p;
+                    }));
+                    this.calculateTotalPrice();
+    
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        } else {
+            this.cartSubject.next(this.cartSubject.getValue().map((p) => {
+                if (p.id === product.id) {
+                    p.quantity = quantity;
+                }
+                return p;
+            }));
+            this.calculateTotalPrice();
+        }
 
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
     }
 
 }

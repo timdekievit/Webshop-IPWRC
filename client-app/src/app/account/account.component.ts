@@ -38,7 +38,6 @@ export class AccountComponent implements OnInit {
     });
   }
 
-  // TODO show confirmation that the account has been updated.
   onSubmit(): void {
     if (this.accountForm.valid) {
       const accountDetails = this.accountForm.value;

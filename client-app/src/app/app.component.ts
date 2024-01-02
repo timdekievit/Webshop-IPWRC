@@ -28,5 +28,7 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.jwtService.logout();
+    this.cartService.setCartClosed();
+    this.cartService.emptyCart();
   }
 }
