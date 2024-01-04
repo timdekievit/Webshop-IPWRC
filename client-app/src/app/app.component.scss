@@ -1,5 +1,17 @@
- /* Reset some default styles */
- body, h1, h2, h3, p, ul, li {
+// variables
+$footer-bg-color: #333;
+$footer-text-color: #fff;
+
+// end variables
+
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -7,6 +19,12 @@
 
 body {
     font-family: Arial, sans-serif;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
 /* Header styles */
@@ -92,8 +110,8 @@ nav a {
 
 /* Footer styles */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: $footer-bg-color;
+    color: $footer-text-color;
     text-align: center;
     padding: 10px;
     margin-top: 30px;
@@ -103,25 +121,18 @@ footer {
     cursor: pointer;
 }
 
-
-/* css for the shopping-cart */
-
-// /* home.component.css */
-// .home-container {
-//     position: relative;
-//   }
-  
-  .cart-icon {
+.cart-icon {
     font-size: 24px;
     cursor: pointer;
     position: absolute;
     top: 10px;
     right: 10px;
-  }
-  
-  app-shopping-cart {
+}
+
+app-shopping-cart {
     position: absolute;
-    top: 40px; /* Adjust this value to control the space between the icon and the card */
+    top: 40px;
+    /* Adjust this value to control the space between the icon and the card */
     right: 10px;
     // width: 300px; /* Adjust the width as needed */
     background-color: white;
@@ -131,7 +142,7 @@ footer {
     border-radius: 10px;
 
     // display: none;
-  }
+}
 
 
 /* Responsive styles */

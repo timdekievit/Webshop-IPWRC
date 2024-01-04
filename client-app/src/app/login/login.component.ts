@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/libs/api/src/lib/authentication/authentication.service';
+import { JwtService } from '../services/jwt.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AuthenticationService } from 'src/libs/api/src/lib/authentication/authe
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService, private router: Router, private jwtService: JwtService) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -26,6 +27,9 @@ export class LoginComponent {
         (response) => {
           // The login was successful, and the token is stored in authService.token
           console.log('Login successful', response);
+
+          this.jwtService.GetIsLoggedInObservable().subscribe((isLoggedIn: boolean) => { console.log('isLoggedIn: ', isLoggedIn); });
+          this.authService.isAdmin().subscribe((isAdmin: boolean) => { console.log('isAdmin: ', isAdmin); });
 
           this.router.navigate(['/home']);
 
