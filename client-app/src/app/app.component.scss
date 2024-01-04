@@ -39,21 +39,41 @@ h1 {
 /* Navigation styles */
 nav {
     background-color: #444;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     border-radius: 10px;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
 nav ul {
+    display: flex; // Make nav ul a flex container
+    justify-content: space-between; // Distribute space between items
     padding: 0;
     max-width: 1200px;
-    margin: 0 auto; 
+    margin: 0 auto;
+}
+
+.nav-links {
+    margin-left: auto;
+}
+
+.nav-links ul {
+    display: flex;
+    gap: 20px;
+}
+
+.logo {
+    order: -1; // Make .logo the first item
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo a {
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
 }
 
 nav li {
@@ -64,7 +84,7 @@ nav li {
 nav a {
     color: #fff;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 /* Main content styles */

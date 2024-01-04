@@ -16,7 +16,9 @@
               <p>{{item.quantity}}</p>
               <button id="plus-button" (click)="increaseQuantity(item)">+</button>
             </div>
-            <button (click)="removeItemFromCart(item)">Remove</button>
+            <button id="remove-button" (click)="removeItemFromCart(item)">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
           </div>
         </div>
       </div>

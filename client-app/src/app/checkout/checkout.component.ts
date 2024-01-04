@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { GiftCardService } from 'src/libs/api/src/lib/giftCard/giftcard.service';
 import { GiftCard } from 'src/libs/entities/src/lib/product/giftcard';
 import { Product } from 'src/libs/entities/src/lib/product/product';
@@ -18,12 +18,13 @@ import { AuthenticationService } from 'src/libs/api/src/lib/authentication/authe
   styleUrls: ['./checkout.component.scss']
 })
 
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   giftCard$: Observable<GiftCard> = new Observable<GiftCard>();
   products$: Observable<Product[]> = new Observable<Product[]>();
   amount: number = 0;
   checkoutForm: FormGroup;
   order: OrderData | undefined;
+  private ngUnsubscribe = new Subject();
 
   constructor(private giftCardService: GiftCardService, 
     private cartService: CartService, 
@@ -41,11 +42,13 @@ export class CheckoutComponent implements OnInit {
       });
      }
 
+
   ngOnInit(): void {
     this.cartService.setCartClosed();
     this.products$ = this.cartService.getcart();
 
-    this.products$.subscribe((products) => {
+    this.products$.pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe(products => {
       this.amount = 0;
       products.forEach((product) => {
         this.amount += product.price;
@@ -72,38 +75,45 @@ export class CheckoutComponent implements OnInit {
       this.giftCard$ = this.giftCardService.get(id);
     }
 
-  PlaceOrder(order: OrderData) {
-    this.orderService.create(order).subscribe(
-    (response) => {
-      // Navigate to the confirmation page here
-      // You can use Angular's Router for this
-      // Make sure to import it and inject it in the constructor
-      console.log(response);
-      console.log(this.order);
-      if (this.order) this.orderHandlingService.setCurrentOrder(this.order);
+    PlaceOrder(order: OrderData) {
+      console.log('PlaceOrder called')
+      if (order) this.orderHandlingService.setCurrentOrder(order);
       this.router.navigate(['/confirmation']);
-    },
-    (error) => {
-      // Handle any errors here
-      console.error(error);
+      this.orderService.create(order)
+        .subscribe(
+          (response) => {
+            console.log(response);
+            console.log(this.order);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
     }
-  );
-  }
 
-  onSubmit() {
-    if (this.checkoutForm.valid) {
-      this.products$.subscribe(products => {
-        this.order = {
-          ...this.checkoutForm.value,
-          products: products
-        };
-        if (this.order) this.PlaceOrder(this.order);
-      });
+    onSubmit() {
+      if (this.checkoutForm.valid) {
+        this.products$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(products => {
+          this.order = {
+            ...this.checkoutForm.value,
+            products: products
+          };
+        });
+        if (this.order) {
+          this.PlaceOrder(this.order);
+          this.order = undefined;
+        }
+      }
     }
-  }
 
   getCartTotal() {
     return this.amount;
-  }  
+  }
+  
+  ngOnDestroy(): void {
+    this.ngUnsubscribe.next(1);
+    this.ngUnsubscribe.complete();
+  }
+  
 
 }

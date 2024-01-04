@@ -1,16 +1,20 @@
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <li><a [routerLink]="['/home']" class="logo">WWWinkel</a></li>
-            <li *ngIf="!(isLoggedIn$ | async)"><a [routerLink]="['/login']" class="login-link">Login</a></li>
-            <li *ngIf="!(isLoggedIn$ | async)"><a [routerLink]="['/register']" class="register-link">Register</a></li>
-            <li *ngIf="(isLoggedIn$ | async)"><a [routerLink]="['/account']" class="account">Account Details</a></li>
-            <li *ngIf="(isLoggedIn$ | async)"><a (click)="logout()" class="logout-link">Logout</a></li>
-            <li *ngIf="isAdmin"><a [routerLink]="['/management']">Management</a></li>
-            <li><a href="#" class="shopping-cart-link" (click)="toggleCart(); $event.preventDefault()">
-                <i class="fa fa-shopping-cart"></i>
-            </a></li>
-        </ul>
-    </nav>
-    <app-shopping-cart *ngIf="isCartOpen$ | async"></app-shopping-cart>
+<!-- Navigation -->
+<nav>
+    <ul>
+        <li class="logo"><a [routerLink]="['/home']">WWWinkel</a></li>
+        <li class="nav-links">
+            <ul>
+                <li *ngIf="!(isLoggedIn$ | async)"><a [routerLink]="['/login']" class="login-link">Login</a></li>
+                <li *ngIf="!(isLoggedIn$ | async)"><a [routerLink]="['/register']" class="register-link">Register</a></li>
+                <li *ngIf="(isLoggedIn$ | async)"><a [routerLink]="['/account']" class="account">Account Details</a></li>
+                <li *ngIf="(isLoggedIn$ | async)"><a (click)="logout()" class="logout-link">Logout</a></li>
+                <li *ngIf="isAdmin"><a [routerLink]="['/management']">Management</a></li>
+                <li><a href="#" class="shopping-cart-link" (click)="toggleCart(); $event.preventDefault()">
+                    <i class="fa fa-shopping-cart"></i>
+                </a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<app-shopping-cart *ngIf="isCartOpen$ | async"></app-shopping-cart>
 <router-outlet></router-outlet>

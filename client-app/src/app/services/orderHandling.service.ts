@@ -10,7 +10,6 @@ export class OrderHandlingService {
 
     private order: BehaviorSubject<OrderData | null> = new BehaviorSubject<OrderData | null>(null);
 
-
     getCurrentOrder() {
         return this.order.asObservable();
     }
