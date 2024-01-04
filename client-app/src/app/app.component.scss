@@ -21,11 +21,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
+
 
 /* Header styles */
 header {
@@ -45,11 +41,19 @@ nav {
     background-color: #444;
     padding: 10px;
     text-align: center;
+    border-radius: 10px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
 nav ul {
-    margin: 0;
     padding: 0;
+    max-width: 1200px;
+    margin: 0 auto; 
 }
 
 nav li {

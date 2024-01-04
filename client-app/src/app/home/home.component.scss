@@ -57,23 +57,7 @@
      }
  }
 
- button {
-     background-color: #333;
-     color: #fff;
-     border: none;
-     padding: 10px 15px;
-     font-size: 16px;
-     cursor: pointer;
-     transition: background-color 0.3s ease; // Smooth transition effect
 
-     &:hover {
-         background-color: #555; // Darker color when hovered
-     }
-
-     &:active {
-         background-color: #777; // Even darker color when clicked
-     }
- }
 
  footer {
      background-color: #333;
@@ -106,25 +90,33 @@
  }
 
  .search-bar {
-     margin-top: 20px;
-     margin-bottom: 20px;
-     text-align: center;
- }
+    display: flex; // Make .search-bar a flex container
+    justify-content: center; // Center align the items horizontally
+    align-items: center; // Center align the items vertically
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
- .search-input {
-     width: 70%;
-     padding: 8px;
-     font-size: 16px;
- }
+.search-input {
+    flex-grow: 1;
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid #ccc;
+    border-right: none;
+}
 
- .search-button {
-     background-color: #333;
-     color: #fff;
-     border: none;
-     padding: 8px 15px;
-     font-size: 16px;
-     cursor: pointer;
- }
+.search-button {
+    background-color: #ccc; // Set the background color to be the same as the border color of the search-input
+    color: #333; // Set the text color to be dark for contrast
+    border: none;
+    padding: 8px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid #ccc;
+    border-left: none;
+}
 
  /* Responsive styles */
  @media (max-width: 768px) {

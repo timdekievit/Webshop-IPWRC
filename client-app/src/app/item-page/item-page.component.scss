@@ -4,24 +4,6 @@
     padding: 20px;
 }
 
-button {
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; // Smooth transition effect
-
-    &:hover {
-        background-color: #555; // Darker color when hovered
-    }
-
-    &:active {
-        background-color: #777; // Even darker color when clicked
-    }
-}
-
 /* Product details styles */
 .product-details {
     display: flex;

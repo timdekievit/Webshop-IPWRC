@@ -2,7 +2,9 @@
     <div class="search-bar">
         <input type="text" class="search-input" placeholder="Search for products..." [(ngModel)]="searchString"
             (keydown.enter)="searchProducts(searchString)">
-        <button (click)="searchProducts(searchString)" class="search-button">Search</button>
+        <button (click)="searchProducts(searchString)" class="search-button">
+            <i class="fa fa-search"></i>
+        </button>
     </div>
     <h2>Featured Products</h2>
     <div class="featured-products">

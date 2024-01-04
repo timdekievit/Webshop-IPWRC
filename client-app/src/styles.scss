@@ -10,3 +10,23 @@
     position: fixed;
     z-index: 1000;
   }
+
+  button {
+    background-color: #FFA500; // Set the background color to the yellow-orange color
+    color: #fff; // Set the text color to white for contrast
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase; // Make the text uppercase for more emphasis
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #cc8400; // Darken the background color on hover for a subtle effect
+    }
+
+    &:active {
+        background-color: #995c00; // Even darker color when clicked
+    }
+}
