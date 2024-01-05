@@ -42,7 +42,6 @@ export class AccountComponent implements OnInit {
     if (this.accountForm.valid) {
       const accountDetails = this.accountForm.value;
       this.authenticationService.update(accountDetails).subscribe((response) => {
-        console.log('response', response);
         this.snackBar.open('Account updated successfully', 'Close', {
           panelClass: ['custom-snackbar'],
           verticalPosition: 'top',

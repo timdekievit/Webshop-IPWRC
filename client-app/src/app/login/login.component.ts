@@ -26,18 +26,12 @@ export class LoginComponent {
       this.authService.login(user).subscribe(
         (response) => {
           // The login was successful, and the token is stored in authService.token
-          console.log('Login successful', response);
-
-          this.jwtService.GetIsLoggedInObservable().subscribe((isLoggedIn: boolean) => { console.log('isLoggedIn: ', isLoggedIn); });
-          this.authService.isAdmin().subscribe((isAdmin: boolean) => { console.log('isAdmin: ', isAdmin); });
-
+          this.jwtService.GetIsLoggedInObservable().subscribe((isLoggedIn: boolean) => {});
+          this.authService.isAdmin().subscribe((isAdmin: boolean) => {});
           this.router.navigate(['/home']);
 
-          // Redirect to another page or perform any other necessary action
         },
         (error) => {
-          // Handle login error (e.g., display an error message)
-          console.error('Login failed', error);
         }
       );
     }

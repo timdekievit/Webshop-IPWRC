@@ -76,19 +76,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     PlaceOrder(order: OrderData) {
-      console.log('PlaceOrder called')
+
       if (order) this.orderHandlingService.setCurrentOrder(order);
       this.router.navigate(['/confirmation']);
-      this.orderService.create(order)
-        .subscribe(
-          (response) => {
-            console.log(response);
-            console.log(this.order);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
+      this.orderService.create(order).subscribe();
     }
 
     onSubmit() {

@@ -28,12 +28,10 @@ export class RegisterComponent {
 
       this.authService.register(user).subscribe(
         (response) => {
-          console.log('Registration successful', response);
 
           this.router.navigate(['/home']);
         },
         (error) => {
-          console.error('Registration failed', error);
         }
       );
     }

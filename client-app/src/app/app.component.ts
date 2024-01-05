@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
     );
 
     this.isAdmin$.subscribe((isAdmin: boolean) => {
-      console.log('isAdmin: ', isAdmin);
       this.isAdmin = isAdmin;
     });
   }

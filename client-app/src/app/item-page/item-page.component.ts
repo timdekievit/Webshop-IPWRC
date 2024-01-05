@@ -23,7 +23,6 @@ export class ItemPageComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    console.log('add to cart');
     this.cartService.addProductToCart(product);
   }
 

@@ -21,7 +21,6 @@ export class CartService {
 
     public toggleCart() {
         this.isCartOpenSubject.next(!this.isCartOpenSubject.getValue());
-        console.log(this.isCartOpenSubject.getValue());
     }
 
     public setCartClosed() {
@@ -40,7 +39,6 @@ export class CartService {
                     this.calculateTotalPrice();
                 },
                 (error) => {
-                    console.log(error);
                 }
             );
             return this.cartSubject.asObservable();
@@ -61,7 +59,6 @@ export class CartService {
                         this.calculateTotalPrice();
                     },
                     (error) => {
-                        console.log(error);
                     }
                 );
             } else {
@@ -79,7 +76,6 @@ export class CartService {
                     this.calculateTotalPrice();
                 },
                 (error) => {
-                    console.log(error);
                 }
             );
         } else {
@@ -127,7 +123,6 @@ export class CartService {
     
                 },
                 (error) => {
-                    console.log(error);
                 }
             );
         } else {
