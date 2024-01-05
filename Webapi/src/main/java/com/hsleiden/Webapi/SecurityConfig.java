@@ -34,8 +34,7 @@ public class SecurityConfig extends SecurityConfigurerAdapter<DefaultSecurityFil
                         .requestMatchers("/api/products/**").permitAll()
                         .requestMatchers("/api/shoppingCart/**").permitAll()
                         .requestMatchers("/api/giftcards/**").permitAll()
-                        .requestMatchers("/api/orders/create").permitAll()
-                        .requestMatchers("/api/orders/all").hasRole("ADMIN")
+                        .requestMatchers("/api/orders/**").permitAll() // TODO change to admin only for GetMapping
                         .requestMatchers("/api/images/**").permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .anyRequest().authenticated()

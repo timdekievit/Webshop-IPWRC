@@ -16,9 +16,14 @@ public class CorsConfig {
 
         // Allow all origins, headers, and methods. You may want to customize this based on your needs.
         config.setAllowCredentials(true);
-        config.addAllowedOriginPattern("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.addAllowedOriginPattern("http://localhost:4200");
+        config.addAllowedHeader("Content-Type");
+        config.addAllowedHeader("Authorization");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
+
 
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
