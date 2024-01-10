@@ -6,13 +6,14 @@ import { LoginData } from 'src/libs/requestsData/LoginData';
 import { UpdateUserData } from 'src/libs/requestsData/UpdateUserData';
 import { User } from 'src/libs/entities/src/lib/user/user';
 import { JwtService } from 'src/app/services/jwt.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class AuthenticationService {
-    webserver = 'http://localhost:8080';
+    webserver = environment.webserver;
     token: string | null = null;
 
     private loginSubject = new Subject<boolean>();

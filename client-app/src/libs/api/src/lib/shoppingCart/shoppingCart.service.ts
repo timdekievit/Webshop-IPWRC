@@ -3,14 +3,14 @@ import { Product } from 'src/libs/entities/src/lib/product/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtService } from 'src/app/services/jwt.service';
 import { Observable } from 'rxjs';
-import { CartService } from 'src/app/services/cart.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class ShoppingCartService {
-  webserver = "http://localhost:8080";
+  webserver = environment.webserver;
 
 
   constructor(private http: HttpClient, private jwtService: JwtService) { }

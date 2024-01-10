@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Product } from 'src/libs/entities/src/lib/product/product';
 import { HttpClient} from '@angular/common/http';
-import { ProductData } from 'src/libs/requestsData/ProductData';
-// import {AssignmentPortal } from '@funle/entities';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class ProductService {
-  webserver = "http://localhost:8080";
+  webserver = environment.webserver;
 
   constructor(private http: HttpClient) {}
 

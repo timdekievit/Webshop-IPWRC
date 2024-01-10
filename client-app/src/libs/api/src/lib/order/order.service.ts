@@ -1,14 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Order } from 'src/libs/entities/src/lib/product/order';
 import { OrderData } from 'src/libs/requestsData/OrderData';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
   // TODO moet verandert worden bij productie
-  webserver = "http://localhost:8080";
+  webserver = environment.webserver;
 
   constructor(private http: HttpClient) {}
 
