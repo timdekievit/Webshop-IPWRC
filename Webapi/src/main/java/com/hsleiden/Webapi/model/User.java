@@ -29,9 +29,7 @@ public class User implements UserDetails {
 
     // TODO minumum wachtwoord lengte
     // check snyk.io
-    // geen lOng maar UUID
-    // jwt alleen id
-    // npm audit fix
+    // kijk hoe je angular en java spring boot kan deployen.
     // vergeet niet uiteindelijk uit de development mode te gaan.
     private String password;
 
