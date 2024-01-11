@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    webserver: "http://localhost:8080",
+    webserver: "http://vps-1c05460e.vps.ovh.net",
 };
