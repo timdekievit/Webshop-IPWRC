@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    webserver: "http://vps-1c05460e.vps.ovh.net",
+    webserver: "https://vps-1c05460e.vps.ovh.net",
 };
