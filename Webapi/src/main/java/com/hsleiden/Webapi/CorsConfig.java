@@ -16,6 +16,7 @@ public class CorsConfig {
 
         config.setAllowCredentials(true);
         config.addAllowedOriginPattern("http://localhost:4200");
+        config.addAllowedOriginPattern("https://vps-1c05460e.vps.ovh.net");
         config.addAllowedHeader("Content-Type");
         config.addAllowedHeader("Authorization");
         config.addAllowedMethod("GET");
