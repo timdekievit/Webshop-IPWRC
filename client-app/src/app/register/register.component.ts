@@ -29,7 +29,7 @@ export class RegisterComponent {
       this.authService.register(user).subscribe(
         (response) => {
 
-          this.router.navigate(['/home']);
+          this.router.navigate(['/login']);
         },
         (error) => {
         }

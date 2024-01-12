@@ -92,6 +92,7 @@ export class CartService {
         this.calculateTotalPrice();
     }
 
+    // TODO also empty cart on backend if logged in
     public emptyCart() {
         this.cartSubject.next([]);
         this.calculateTotalPrice();

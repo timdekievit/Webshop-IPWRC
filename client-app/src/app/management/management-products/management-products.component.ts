@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from 'src/libs/api/src/lib/product/product.service';
 import { ProductData } from 'src/libs/requestsData/ProductData';
 
@@ -13,7 +14,7 @@ export class ManagementProductsComponent {
   product: ProductData | undefined;
   selectedFile: File | undefined;
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private snackbar: MatSnackBar) {
     this.productForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
@@ -39,6 +40,10 @@ export class ManagementProductsComponent {
 
       // Send the product data to the backend
       this.productService.create(formData).subscribe();
+      this.snackbar.open('Product created successfully', 'Close', {
+        duration: 3000,
+        panelClass: ['custom-snackbar']
+      });
     }
   }
 

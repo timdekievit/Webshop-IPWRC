@@ -44,8 +44,6 @@ export class AccountComponent implements OnInit {
       this.authenticationService.update(accountDetails).subscribe((response) => {
         this.snackBar.open('Account updated successfully', 'Close', {
           panelClass: ['custom-snackbar'],
-          verticalPosition: 'top',
-          horizontalPosition: 'end',
           duration: 3000,
         });
       });

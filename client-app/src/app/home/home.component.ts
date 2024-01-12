@@ -4,6 +4,7 @@ import { ProductService } from 'src/libs/api/src/lib/product/product.service';
 import { Product } from 'src/libs/entities/src/lib/product/product';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   randomProducts: Product[] = [];
 
   constructor(private productService: ProductService,
-    private cartService: CartService, private router: Router, private route: ActivatedRoute) { }
+    private cartService: CartService, private router: Router, private route: ActivatedRoute, private snackbar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.inintializeProducts();
@@ -60,6 +61,10 @@ export class HomeComponent implements OnInit {
 
   addToCart(product: Product) {
     this.cartService.addProductToCart(product);
+    this.snackbar.open('Product added to cart', 'Close', {
+      duration: 3000,
+      panelClass: ['custom-snackbar']
+    });
   }
 
 }

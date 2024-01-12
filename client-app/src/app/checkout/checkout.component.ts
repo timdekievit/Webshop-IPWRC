@@ -80,6 +80,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       if (order) this.orderHandlingService.setCurrentOrder(order);
       this.router.navigate(['/confirmation']);
       this.orderService.create(order).subscribe();
+      this.cartService.emptyCart();
     }
 
     onSubmit() {
