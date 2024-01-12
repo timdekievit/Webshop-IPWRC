@@ -28,10 +28,8 @@ public class User implements UserDetails {
     private String email;
 
     // TODO minumum wachtwoord lengte
-    // duidelijke message pop-up bij dingen aanmaken en aanmelden
-    // na registratie ga naar login scherm
+    // password beveiliging op de serverside
     // check op verbetering security
-    // maak van de image url https van ipv http
     // check of de frontend in development mode nog staat na build.
     // zorg dat sommige enpoints alleen voor admin zijn
     // check snyk.io

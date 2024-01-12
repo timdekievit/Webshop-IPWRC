@@ -1,19 +1,36 @@
 <div class="container">
-    <div class="register-container">
-        <h2>Register</h2>
-        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-            <div class="input-group">
-                <input type="text" placeholder="Email" formControlName="email" required>
-            </div>
-            <div class="input-group">
-                <input type="password" placeholder="Password" formControlName="password" required>
-            </div>
-            <div class="input-group">
-                <input type="password" placeholder="Repeat password" formControlName=" repeatPassword" required>
-            </div>
-            <div class="input-group">
-                <button type="submit">Register</button>
-            </div>
-        </form>
-    </div>
+  <div class="register-container">
+      <h2>Register</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="input-group">
+              <input type="text" placeholder="Email" formControlName="email" required>
+              <small *ngIf="registerForm.get('email')?.errors?.['email']" class="form-text text-muted">
+                Email must be a valid email.
+              </small>
+          </div>
+          <div class="input-group">
+              <input type="password" placeholder="Password" formControlName="password" required>
+                <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+                <small *ngIf="registerForm.get('password')?.errors?.['required']" class="form-text text-muted">
+                  Password is required.
+                </small>
+                <small *ngIf="registerForm.get('password')?.errors?.['minlength']" class="form-text text-muted">
+                  Password must be at least 8 characters long.
+                </small>
+                <small *ngIf="registerForm.get('password')?.errors?.['pattern']" class="form-text text-muted">
+                  Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+                </small>
+              </div>
+          </div>
+          <div class="input-group">
+              <input type="password" placeholder="Repeat password" formControlName="repeatPassword" required>
+              <small *ngIf="registerForm.errors?.['notSame']" class="form-text text-muted">
+                Password and Repeat Password must be the same.
+              </small>
+          </div>
+          <div class="input-group">
+              <button type="submit">Register</button>
+          </div>
+      </form>
+  </div>
 </div>
