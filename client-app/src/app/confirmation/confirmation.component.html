@@ -1,25 +1,25 @@
-<div *ngIf="(order$ | async) as order">
-
-    <div>
-        <h1>Order Received</h1>
-    
-        <p>Name: {{ order.name }}</p>
-        <p>Address: {{ order.address }}</p>
-        <p>City: {{ order.city }}</p>
-        <p>Zip Code: {{ order.zipCode }}</p>
-    
-        <h2>Your Products</h2>
-        <ul>
-            <li *ngFor="let product of order.products">
-                {{product.quantity }}x {{ product.title }} - {{ product.price * product.quantity | currency:'EUR'}}
-            </li>
-        </ul>
+<div class="container">
+    <div *ngIf="(order$ | async) as order">
+        <div>
+            <h1>Order Received</h1>
+        
+            <p>Name: {{ order.name }}</p>
+            <p>Address: {{ order.address }}</p>
+            <p>City: {{ order.city }}</p>
+            <p>Zip Code: {{ order.zipCode }}</p>
+        
+            <h2>Your Products</h2>
+            <ul>
+                <li *ngFor="let product of order.products">
+                    {{product.quantity }}x {{ product.title }} - {{ product.price * product.quantity | currency:'EUR'}}
+                </li>
+            </ul>
+        </div>
     </div>
 
-</div>
-
-<div *ngIf="(order$ | async) === null">
-    <p>No order found.</p>
+    <div *ngIf="(order$ | async) === null">
+        <p>No order found.</p>
+    </div>
 </div>
 
 
